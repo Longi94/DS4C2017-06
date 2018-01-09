@@ -1,0 +1,13 @@
+{
+  "name": "DS4C2017-06-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ng build --prod && cp manifest.yml dist && cp Staticfile dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
