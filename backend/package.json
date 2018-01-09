@@ -1,13 +1,19 @@
 {
   "name": "DS4C2017-06-backend",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "build": "echo \"Error: no build script specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "cf-deployment-tracker-client": "*",
+    "commander": "^2.6.0",
+    "express": "^4.14.1",
+    "http-post": "^0.1.1",
+    "http-proxy": "^1.8.1"
+  }
 }

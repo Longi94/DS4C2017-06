@@ -1,0 +1,4 @@
+applications:
+- name: DS4C2017-06-backend
+  random-route: true
+  memory: 64M
