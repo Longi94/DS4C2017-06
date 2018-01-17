@@ -1,0 +1,13 @@
+#chat-messages {
+  margin-bottom: 10px;
+  height: 300px;
+}
+
+.bot-message, .user-message {
+  display: block;
+}
+
+#chat-messages .card-body > div {
+  position: absolute;
+  bottom: 20px;
+}

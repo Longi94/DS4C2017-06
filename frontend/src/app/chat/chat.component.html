@@ -1,0 +1,17 @@
+<h4>Chat</h4>
+<div id="chat-messages" class="card">
+  <div class="card-body">
+      <div>
+        <span *ngFor="let message of messages" [class]="message.fromBot ? 'bot-message' : 'user-message'">{{message.text}}</span>
+      </div>
+  </div>
+</div>
+<form (ngSubmit)="sendMessage()">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" id="chat-input" placeholder="Say something nice..." name="message"
+           [(ngModel)]="messageInput" required>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Send</button>
+    </div>
+  </div>
+</form>

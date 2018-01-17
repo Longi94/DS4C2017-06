@@ -8,25 +8,31 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
 import { FeedService } from "./feed.service";
+import { ChatComponent } from './chat/chat.component';
+import { ChatService } from './chat.service';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeedComponent
+    FeedComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    FormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
     )
   ],
   providers: [
-    FeedService
+    FeedService,
+    ChatService
   ],
   bootstrap: [
-    AppComponent,
+    ChatComponent,
     FeedComponent
   ]
 })
