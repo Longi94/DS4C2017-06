@@ -1,17 +1,32 @@
 <h4>Chat</h4>
-<div id="chat-messages" class="card">
-  <div class="card-body">
-      <div>
-        <span *ngFor="let message of messages" [class]="message.fromBot ? 'bot-message' : 'user-message'">{{message.text}}</span>
-      </div>
+<div id="chat-messages">
+  <svg version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="linearGradient820" x1="100" x2="100" y1="0" y2="100" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#fff" offset="0"></stop>
+        <stop stop-color="#fff" stop-opacity="0" offset=".624"></stop>
+        <stop stop-color="#fff" stop-opacity="0" offset="1"></stop>
+      </linearGradient>
+    </defs>
+    <g>
+      <rect y="0" width="100" height="100" fill="url(#linearGradient820)"></rect>
+    </g>
+  </svg>
+  <div>
+    <div *ngFor="let message of messages" class="clearfix">
+      <img class="icon-robot" src="/assets/svg/robot.svg" [@flyInFromLeft]="'in'" *ngIf="message.fromBot">
+      <img class="icon-user" src="/assets/svg/user.svg" [@flyInFromRight]="'in'" *ngIf="!message.fromBot">
+      <span *ngIf="message.fromBot" class="bot-message" [@flyInFromLeft]="'in'">{{message.text}}</span>
+      <span *ngIf="!message.fromBot" class="user-message"[@flyInFromRight]="'in'" >{{message.text}}</span>
+    </div>
   </div>
 </div>
 <form (ngSubmit)="sendMessage()">
   <div class="input-group mb-3">
     <input type="text" class="form-control" id="chat-input" placeholder="Say something nice..." name="message"
-           [(ngModel)]="messageInput" required>
+           [(ngModel)]="messageInput" autocomplete="off">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit">Send</button>
+      <button class="btn btn-primary" type="submit">Send</button>
     </div>
   </div>
 </form>
