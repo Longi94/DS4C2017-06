@@ -18,7 +18,8 @@ export class FeedComponent implements OnInit {
   }
 
   getFeed(): void {
-    this.feedItems = this.feedService.getFeed();
+    this.feedService.getFeed()
+      .subscribe(items => this.feedItems = items);
   }
 
   feedItems: FeedItem[];

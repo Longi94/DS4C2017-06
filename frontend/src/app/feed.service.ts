@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FeedItem } from "./feed/fedd-item";
 import { FEED_ITEMS } from "./feed/mock-feed-items";
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class FeedService {
@@ -8,8 +10,8 @@ export class FeedService {
   constructor() {
   }
 
-  getFeed(): FeedItem[] {
-    return FEED_ITEMS;
+  getFeed(): Observable<FeedItem[]> {
+    return of(FEED_ITEMS);
   }
 
 }
