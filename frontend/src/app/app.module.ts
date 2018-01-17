@@ -4,17 +4,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppComponent } from './app.component';
+import { FeedComponent } from './feed/feed.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    FeedComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}
