@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
+import { FeedService } from "./feed.service";
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { FeedComponent } from './feed/feed.component';
     BrowserModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    FeedService
+  ],
   bootstrap: [
     AppComponent,
     FeedComponent

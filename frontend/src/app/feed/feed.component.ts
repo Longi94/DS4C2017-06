@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FEED_ITEMS } from "./mock-feed-items";
+import { FeedService } from "../feed.service";
+import { FeedItem } from "./fedd-item";
 import moment = require("moment");
 
 @Component({
@@ -8,16 +9,22 @@ import moment = require("moment");
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  feedItems = FEED_ITEMS;
 
-  formatDate = function (date) {
-    return moment(date).format('MM/DD/YYYY')
-  };
-
-  constructor() {
+  constructor(private feedService: FeedService) {
   }
 
   ngOnInit() {
+    this.getFeed();
   }
+
+  getFeed(): void {
+    this.feedItems = this.feedService.getFeed();
+  }
+
+  feedItems: FeedItem[];
+
+  formatDate = function (date) {
+    return moment(date).format('MM/DD/YYYY');
+  };
 
 }
