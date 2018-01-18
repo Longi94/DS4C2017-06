@@ -1,0 +1,25 @@
+product: '1.0.0'
+
+info:
+  name: ds4c2017-06-backend
+  title: DS4C2017-06-backend
+  version: "1.0.0"
+
+apis:
+  'ds4c2017-06-backend':
+    $ref: DS4C2017-06-backend.yaml
+
+visibility:
+  view:
+    type: public
+  subscribe:
+    type: authenticated
+
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      value: 100/hour
+      hard-limit: false

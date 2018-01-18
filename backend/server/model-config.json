@@ -34,5 +34,18 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Song": {
+    "dataSource": "cloudant-songs",
+    "public": true,
+    "strict": false
+  },
+  "Feed": {
+    "dataSource": "cloudant-feed",
+    "public": true
+  },
+  "TextInput": {
+    "dataSource": "db",
+    "public": true
   }
 }
