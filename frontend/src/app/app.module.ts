@@ -12,12 +12,27 @@ import { FeedService } from "./feed.service";
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './chat.service';
 import { FormsModule } from "@angular/forms";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from "@angular/router";
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: '', component: HomeComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     FeedComponent,
-    ChatComponent
+    ChatComponent,
+    NavbarComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,15 +42,22 @@ import { FormsModule } from "@angular/forms";
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
+    ),
+    RouterModule.forRoot(
+      routes,
+      {enableTracing: true} // <-- debugging purposes only
     )
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     FeedService,
     ChatService
   ],
   bootstrap: [
-    ChatComponent,
-    FeedComponent
+    NavbarComponent,
+    AppComponent
   ]
 })
 export class AppModule {
