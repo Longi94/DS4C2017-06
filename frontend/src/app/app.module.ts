@@ -48,9 +48,6 @@ const routes: Routes = [
       {enableTracing: true} // <-- debugging purposes only
     )
   ],
-  exports: [
-    RouterModule
-  ],
   providers: [
     FeedService,
     ChatService
