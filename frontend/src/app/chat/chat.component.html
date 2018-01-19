@@ -1,5 +1,8 @@
 <h4>Chat</h4>
 <div id="chat-messages">
+  <div class="center-content" *ngIf="!authenticated" style="height: 100%;">
+    <span>Login to start chatting...</span>
+  </div>
   <svg version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="linearGradient820" x1="100" x2="100" y1="0" y2="100" gradientUnits="userSpaceOnUse">
@@ -24,9 +27,9 @@
 <form (ngSubmit)="sendMessage()">
   <div class="input-group mb-3">
     <input type="text" class="form-control" id="chat-input" placeholder="Say something nice..." name="message"
-           [(ngModel)]="messageInput" autocomplete="off">
+           [(ngModel)]="messageInput" autocomplete="off" [disabled]="!authenticated">
     <div class="input-group-append">
-      <button class="btn btn-primary" type="submit">Send</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!authenticated">Send</button>
     </div>
   </div>
 </form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(res => console.log(res.id));
+  constructor(private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -20,8 +21,23 @@ export class LoginComponent implements OnInit {
     password: ""
   };
 
+  alert: string = "";
+
   login() {
-    console.log('asdf');
+    if (this.model.username.length == 0) {
+      this.alert = "Missing username!";
+      return;
+    }
+
+    if (this.model.password.length == 0) {
+      this.alert = "Missing password!";
+      return;
+    }
+
+    this.authService.login(this.model.username, this.model.password).subscribe(user => {
+      this.authService.announceLogin(user);
+      this.router.navigate(['/']);
+    })
   }
 
 }

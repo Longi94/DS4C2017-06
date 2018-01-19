@@ -13,6 +13,7 @@
       <label for="confirm-password">Confirm Password</label>
       <input id="confirm-password" type="password" class="form-control" name="confirm-password" [(ngModel)]="model.confirmPassword" #password="ngModel" required />
     </div>
+    <div class="alert alert-danger" role="alert" *ngIf="alert.length > 0">{{alert}}</div>
     <div class="form-group">
       <button class="btn btn-primary">Register</button>
       <a routerLink="/login" class="btn btn-link">Cancel</a>

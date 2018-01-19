@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from "./auth.service";
+import { UserService } from "./user.service";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -40,17 +42,14 @@ const routes: Routes = [
     NgbModule.forRoot(),
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    ),
-    RouterModule.forRoot(
-      routes,
-      {enableTracing: true} // <-- debugging purposes only
-    )
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
+    RouterModule.forRoot(routes)
   ],
   providers: [
     FeedService,
-    ChatService
+    ChatService,
+    AuthService,
+    UserService
   ],
   bootstrap: [
     NavbarComponent,

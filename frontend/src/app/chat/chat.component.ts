@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../chat.service";
 import { ChatMessage } from "../model/chat-message";
 import { animate, keyframes, state, style, transition, trigger } from "@angular/animations";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-chat',
@@ -13,8 +14,8 @@ import { animate, keyframes, state, style, transition, trigger } from "@angular/
       transition('void => *', [
         animate(400, keyframes([
           style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
-          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.4}),
-          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+          style({opacity: 1, transform: 'translateX(15px)', offset: 0.4}),
+          style({opacity: 1, transform: 'translateX(0)', offset: 1.0})
         ]))
       ])
     ]),
@@ -23,8 +24,8 @@ import { animate, keyframes, state, style, transition, trigger } from "@angular/
       transition('void => *', [
         animate(400, keyframes([
           style({opacity: 0, transform: 'translateX(100%)', offset: 0}),
-          style({opacity: 1, transform: 'translateX(-15px)',  offset: 0.4}),
-          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+          style({opacity: 1, transform: 'translateX(-15px)', offset: 0.4}),
+          style({opacity: 1, transform: 'translateX(0)', offset: 1.0})
         ]))
       ])
     ])
@@ -32,10 +33,14 @@ import { animate, keyframes, state, style, transition, trigger } from "@angular/
 })
 export class ChatComponent implements OnInit {
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService,
+              private authService: AuthService) {
   }
 
+  authenticated: boolean;
+
   ngOnInit() {
+    this.authenticated = this.authService.authenticated();
   }
 
   messageInput: string = "";
