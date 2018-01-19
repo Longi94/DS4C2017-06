@@ -1,0 +1,7 @@
+.feed-item > span {
+  display: block;
+}
+
+.feed-user {
+  font-weight: bold;
+}

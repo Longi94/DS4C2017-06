@@ -1,0 +1,62 @@
+#chat-messages {
+  margin-bottom: 10px;
+  height: 400px;
+}
+
+.user-message, .bot-message {
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  max-width: calc(100% - 39px);
+  word-wrap: break-word;
+}
+
+#chat-messages .clearfix {
+  margin-top: 5px;
+}
+
+.user-message {
+  background-color: #007bff;
+  float: right;
+}
+
+.bot-message {
+  background-color: #868e96;
+  float: left;
+}
+
+.icon-user {
+  float: right;
+  margin-left: 5px;
+}
+
+.icon-robot {
+  float: left;
+  margin-right: 5px;
+}
+
+.icon-user, .icon-robot {
+  height: 34px;
+  width: 34px;
+}
+
+#chat-messages > div {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+#chat-messages {
+  position: relative;
+  overflow: hidden;
+}
+
+#chat-messages > svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+}
