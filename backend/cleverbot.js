@@ -1,33 +1,45 @@
 //Cleverbot
 var http = require('http');
+var express = require('express');
+var session = require('express-session');
 var querystring = require('querystring');
-var cleverbotState = '';
+var bodyparser = require('body-parser');
+
+var app = express();
+app.use(session({secret:'XASDASDA'}));
+app.use(bodyparser.json()); 
+app.use(bodyparser.urlencoded({ extended: true }));
+
 var API_KEY = "CC6fpvu_A4khBgNslABBRJ64jtg";
+var ssn ;
 
- exports.getCleverBotResponse = function(userInput){
+//for testing
+app.get('/',function(req, res){
+	ssn = req.session;
+	
+	if(!ssn.cs){
+		ssn.cs = '';
+	}
 
- var path = '/getreply?'+querystring.stringify({key: API_KEY, input: userInput, cs: cleverbotState});
-var options = {
-  hostname: 'www.cleverbot.com',
-  port: 80,
-  path: path,
-  method: 'GET'
-}
+	var path = '/getreply?'+querystring.stringify({key: API_KEY, input: "Hello, how are you?", cs: ssn.cs});
+	var options = {
+	  hostname: 'www.cleverbot.com',
+	  port: 80,
+	  path: path,
+	  method: 'GET'
+	}
 
-var body = '';
-var cleverbotResponse = '';
-
-var req = http.request(options, function(response) {
- //data comes in chunks, so we append it to the body variable.
+	var body = '';
+	var req = http.request(options, function(response) {
+  
   response.on('data', function (chunk) {
 		    body += chunk;
 	});
-  
-  //data chunks have finished, body is full.
    response.on('end', function () {
    		var jsonObj = JSON.parse(body);
-   		cleverbotState = jsonObj.cs;
+   		ssn.cs = jsonObj.cs;
    		cleverbotResponse = jsonObj.output;
+ 		res.send(cleverbotResponse);
 	});
 });
 
@@ -37,14 +49,49 @@ req.on('error', function(e) {
 
 req.end();
 
- return cleverbotResponse;
-}
+})
+
 
 /*
-* Server created to test, can be removed if not needed.
-http.createServer(function (req, res) {
-	//http.get()
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(getCleverBotResponse("Hello, what's your name?"));
-}).listen(8080); 
+//this should be the one we actually use
+app.post('/chatbot', function(req, res){
+	
+	ssn = req.session;
+	var userInput = req.body.uinput; //change "uinput" as needed.
+
+	if(!ssn.cs){
+		ssn.cs = '';
+	}
+
+	var path = '/getreply?'+querystring.stringify({key: API_KEY, input: userInput, cs: ssn.cs});
+	var options = {
+	  hostname: 'www.cleverbot.com',
+	  port: 80,
+	  path: path,
+	  method: 'GET'
+	}
+
+	var body = '';
+	var req = http.request(options, function(response) {
+  
+  response.on('data', function (chunk) {
+		    body += chunk;
+	});
+   response.on('end', function () {
+   		var jsonObj = JSON.parse(body);
+   		ssn.cs = jsonObj.cs;
+   		cleverbotResponse = jsonObj.output;
+ 		res.send(cleverbotResponse);
+	});
+});
+
+req.on('error', function(e) {
+  console.log('problem with request: ' + e.message);
+});
+
+req.end();
+});
 */
+
+app.listen(8080, () => console.log("app listening on 8080"));
+
