@@ -2,7 +2,7 @@
 <ul class="list-group">
   <li class="list-group-item feed-item" *ngFor="let feedItem of feedItems">
     <span class="feed-user">{{feedItem.user}}</span>
-    <span class="feed-song">{{feedItem.song}}</span>
-    <span class="feed-date">{{formatDate(feedItem.timestamp)}}</span>
+    <span class="feed-song">{{feedItem.song.artist + ' - ' + feedItem.song.title}}</span>
+    <span class="feed-date">{{feedItem.timestamp | date: 'medium'}}</span>
   </li>
 </ul>

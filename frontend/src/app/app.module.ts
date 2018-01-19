@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from "./auth.service";
 import { UserService } from "./user.service";
+import { MusicService } from "./music.service";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
+    MusicService,
     FeedService,
     ChatService,
     AuthService,

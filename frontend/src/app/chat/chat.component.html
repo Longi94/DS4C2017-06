@@ -33,3 +33,18 @@
     </div>
   </div>
 </form>
+<button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100" (click)="getRecommendation(resultModal)">
+  {{wordCount < 100 ? 'Chat with the bot a little more...' : 'Get song recommendation'}}
+</button>
+
+<ng-template #resultModal let-c="close">
+  <div class="modal-header">
+    <h5>We suggest listening to...</h5>
+  </div>
+  <div class="modal-body">
+    <h4>{{resultSong.title + ' - ' + resultSong.artist}}</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c()">Try again</button>
+  </div>
+</ng-template>

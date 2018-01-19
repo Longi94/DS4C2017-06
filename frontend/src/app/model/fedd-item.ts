@@ -1,6 +1,8 @@
+import { Song } from "./song";
+
 export class FeedItem {
   id: number;
   user: string;
-  song: string;
+  song: Song;
   timestamp: Date;
 }

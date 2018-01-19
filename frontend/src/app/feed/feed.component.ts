@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FeedService } from "../feed.service";
 import { FeedItem } from "../model/fedd-item";
 import moment = require("moment");
+import { MusicService } from "../music.service";
 
 @Component({
   selector: 'app-feed',
@@ -10,7 +11,9 @@ import moment = require("moment");
 })
 export class FeedComponent implements OnInit {
 
-  constructor(private feedService: FeedService) {
+  constructor(private feedService: FeedService,
+              private musicService: MusicService) {
+    musicService.feed$.subscribe(item => this.feedItems.unshift(item));
   }
 
   ngOnInit() {
@@ -23,9 +26,5 @@ export class FeedComponent implements OnInit {
   }
 
   feedItems: FeedItem[];
-
-  formatDate = function (date) {
-    return moment(date).format('MM/DD/YYYY');
-  };
 
 }

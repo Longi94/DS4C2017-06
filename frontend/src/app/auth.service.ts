@@ -3,6 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { User } from "./model/user";
 import { of } from "rxjs/observable/of";
 import { Subject } from "rxjs/Subject";
+import { tap } from "rxjs/operators";
 
 const USER_KEY = 'authenticatedUser';
 
@@ -26,11 +27,9 @@ export class AuthService {
     };
 
     localStorage.setItem(USER_KEY, JSON.stringify(user));
-    return of(user);
-  }
-
-  announceLogin(user: User) {
-    this.loginSource.next(user);
+    return of(user).pipe(
+      tap(user => this.loginSource.next(user)),
+    );
   }
 
   logout() {
@@ -42,7 +41,7 @@ export class AuthService {
     return localStorage.getItem(USER_KEY) != null;
   }
 
-  getAuthenticatedUser(): User {
+  static getAuthenticatedUser(): User {
     return JSON.parse(localStorage.getItem(USER_KEY));
   }
 }

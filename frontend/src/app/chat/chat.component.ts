@@ -3,6 +3,9 @@ import { ChatService } from "../chat.service";
 import { ChatMessage } from "../model/chat-message";
 import { animate, keyframes, state, style, transition, trigger } from "@angular/animations";
 import { AuthService } from "../auth.service";
+import { MusicService } from "../music.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Song } from "../model/song";
 
 @Component({
   selector: 'app-chat',
@@ -34,7 +37,9 @@ import { AuthService } from "../auth.service";
 export class ChatComponent implements OnInit {
 
   constructor(private chatService: ChatService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private musicService: MusicService,
+              private modalService: NgbModal) {
   }
 
   authenticated: boolean;
@@ -45,16 +50,41 @@ export class ChatComponent implements OnInit {
 
   messageInput: string = "";
   messages: ChatMessage[] = [];
+  wordCount: number = 0;
+  resultSong: Song = null;
 
   sendMessage() {
-    if (this.messageInput === "") {
+    let message = this.messageInput.replace(/\s\s+/g, ' ');
+    if (message === "" || message === " ") {
       return;
     }
     this.messages.push({text: this.messageInput, fromBot: false});
+    this.wordCount += message.split(' ').length;
+
     this.messageInput = "";
     this.chatService.sendMessage(this.messageInput).subscribe(response => {
       this.messages.push(response);
     });
   }
 
+  getRecommendation(resultModal) {
+    if (this.wordCount < 100) {
+      return;
+    }
+
+    let fullText = this.messages
+      .filter((message) => !message.fromBot)
+      .map((message) => message.text)
+      .join('. ');
+
+    this.musicService.getRecommendedSong(fullText).subscribe(song => {
+      this.resultSong = song;
+      this.modalService.open(resultModal).result.then((result) => {
+        this.resultSong = null;
+        this.wordCount = 0;
+        this.messages = [];
+        this.messageInput = "";
+      })
+    });
+  }
 }

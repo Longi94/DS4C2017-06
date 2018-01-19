@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.authenticated = this.authService.authenticated();
 
     if (this.authenticated) {
-      this.authenticatedUser = this.authService.getAuthenticatedUser();
+      this.authenticatedUser = AuthService.getAuthenticatedUser();
     }
   }
 
