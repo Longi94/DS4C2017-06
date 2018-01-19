@@ -21,14 +21,14 @@ export class UserService {
   }
 
   create(user: User) {
-    return this.http.post(this.userUrl, user).pipe(catchError(HttpUtils.handleError("GET User", null)));
+    return this.http.post(this.userUrl, user).pipe(catchError(HttpUtils.handleError("POST User", null)));
   }
 
   update(user: User) {
-    return this.http.put(this.userUrl + '/' + user.id, user).pipe(catchError(HttpUtils.handleError("GET User", null)));
+    return this.http.put(this.userUrl + '/' + user.id, user).pipe(catchError(HttpUtils.handleError("PUT User", null)));
   }
 
   delete(id: number) {
-    return this.http.delete(this.userUrl + '/' + id).pipe(catchError(HttpUtils.handleError("GET User", null)));
+    return this.http.delete(this.userUrl + '/' + id).pipe(catchError(HttpUtils.handleError("DELETE User", null)));
   }
 }
