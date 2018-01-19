@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../chat.service";
-import { ChatMessage } from "./chat-message";
+import { ChatMessage } from "../model/chat-message";
 import { animate, keyframes, state, style, transition, trigger } from "@angular/animations";
 
 @Component({

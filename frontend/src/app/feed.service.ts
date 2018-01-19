@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FeedItem } from "./feed/fedd-item";
+import { FeedItem } from "./model/fedd-item";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';

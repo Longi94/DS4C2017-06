@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from "../feed.service";
-import { FeedItem } from "./fedd-item";
+import { FeedItem } from "../model/fedd-item";
 import moment = require("moment");
 
 @Component({
