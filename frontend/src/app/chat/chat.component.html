@@ -34,7 +34,7 @@
   </div>
 </form>
 <button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100" (click)="getRecommendation(resultModal)">
-  {{wordCount < 100 ? 'Chat with the bot a little more...' : 'Get song recommendation'}}
+  {{wordCount < 100 ? ('Chat with the bot a little more... Words left: ' + (100 - wordCount)) : 'Get song recommendation'}}
 </button>
 
 <ng-template #resultModal let-c="close">
