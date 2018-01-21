@@ -1,6 +1,5 @@
 {
-  "name": "Chatbot",
-  "plural": "Chatbot",
+  "name": "Song",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
