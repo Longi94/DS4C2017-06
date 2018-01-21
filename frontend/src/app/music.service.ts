@@ -16,7 +16,7 @@ export class MusicService {
   constructor(private httpClient: HttpClient) {
   }
 
-  private musicUrl = environment.apiBaseUrl + '/music';
+  private musicUrl = environment.apiBaseUrl + '/Songs/recommend';
 
   private feedSource = new Subject<FeedItem>();
 
@@ -25,7 +25,7 @@ export class MusicService {
   getRecommendedSong(text: string): Observable<Song> {
     let dummySong: Song = new Song("dummyTitle", "dummyArtist");
 
-    return /*this.httpClient.post<Song>(this.musicUrl, {text: text})*/of(dummySong).pipe(
+    return this.httpClient.post<Song>(this.musicUrl, {text: text}).pipe(
       tap(song => {
         let user = AuthService.getAuthenticatedUser();
         let item: FeedItem = {

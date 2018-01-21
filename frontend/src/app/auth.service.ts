@@ -37,7 +37,7 @@ export class AuthService {
     this.logoutSource.next();
   }
 
-  authenticated(): boolean {
+  static authenticated(): boolean {
     return localStorage.getItem(USER_KEY) != null;
   }
 

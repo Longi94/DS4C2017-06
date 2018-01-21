@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit {
   authenticated: boolean;
 
   ngOnInit() {
-    this.authenticated = this.authService.authenticated();
+    this.authenticated = AuthService.authenticated();
   }
 
   messageInput: string = "";
@@ -73,18 +73,18 @@ export class ChatComponent implements OnInit {
     }
 
     let fullText = this.messages
-      .filter((message) => !message.fromBot)
-      .map((message) => message.text)
+      .filter(message => !message.fromBot)
+      .map(message => message.text)
       .join('. ');
 
     this.musicService.getRecommendedSong(fullText).subscribe(song => {
       this.resultSong = song;
-      this.modalService.open(resultModal).result.then((result) => {
+      this.modalService.open(resultModal).result.then(() => {
         this.resultSong = null;
         this.wordCount = 0;
         this.messages = [];
         this.messageInput = "";
-      })
+      });
     });
   }
 }

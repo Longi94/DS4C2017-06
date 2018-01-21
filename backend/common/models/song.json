@@ -5,7 +5,16 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "artist": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  },
   "validations": [],
   "relations": {},
   "acls": [],
