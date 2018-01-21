@@ -378,7 +378,7 @@ paths:
               response:
                 type: string
       deprecated: false
-  /Chatbots:
+  /Chatbot:
     post:
       tags:
         - Chatbot
@@ -402,7 +402,7 @@ paths:
       tags:
         - Chatbot
       summary: Patch an existing model instance or insert a new one into the data source.
-      operationId: Chatbot.upsert__put_Chatbots
+      operationId: Chatbot.upsert__put_Chatbot
       parameters:
         - name: data
           in: body
@@ -421,7 +421,7 @@ paths:
       tags:
         - Chatbot
       summary: Patch an existing model instance or insert a new one into the data source.
-      operationId: Chatbot.upsert__patch_Chatbots
+      operationId: Chatbot.upsert__patch_Chatbot
       parameters:
         - name: data
           in: body
@@ -456,7 +456,7 @@ paths:
             items:
               $ref: '#/definitions/Chatbot'
       deprecated: false
-  /Chatbots/replaceOrCreate:
+  /Chatbot/replaceOrCreate:
     post:
       tags:
         - Chatbot
@@ -476,7 +476,7 @@ paths:
           schema:
             $ref: '#/definitions/Chatbot'
       deprecated: false
-  /Chatbots/upsertWithWhere:
+  /Chatbot/upsertWithWhere:
     post:
       tags:
         - Chatbot
@@ -502,12 +502,12 @@ paths:
           schema:
             $ref: '#/definitions/Chatbot'
       deprecated: false
-  '/Chatbots/{id}/exists':
+  '/Chatbot/{id}/exists':
     get:
       tags:
         - Chatbot
       summary: Check whether a model instance exists in the data source.
-      operationId: 'Chatbot.exists__get_Chatbots_{id}_exists'
+      operationId: 'Chatbot.exists__get_Chatbot_{id}_exists'
       parameters:
         - name: id
           in: path
@@ -524,12 +524,12 @@ paths:
               exists:
                 type: boolean
       deprecated: false
-  '/Chatbots/{id}':
+  '/Chatbot/{id}':
     head:
       tags:
         - Chatbot
       summary: Check whether a model instance exists in the data source.
-      operationId: 'Chatbot.exists__head_Chatbots_{id}'
+      operationId: 'Chatbot.exists__head_Chatbot_{id}'
       parameters:
         - name: id
           in: path
@@ -592,7 +592,7 @@ paths:
       tags:
         - Chatbot
       summary: Patch attributes for a model instance and persist it into the data source.
-      operationId: 'Chatbot.prototype.updateAttributes__put_Chatbots_{id}'
+      operationId: 'Chatbot.prototype.updateAttributes__put_Chatbot_{id}'
       parameters:
         - name: data
           in: body
@@ -617,7 +617,7 @@ paths:
       tags:
         - Chatbot
       summary: Patch attributes for a model instance and persist it into the data source.
-      operationId: 'Chatbot.prototype.updateAttributes__patch_Chatbots_{id}'
+      operationId: 'Chatbot.prototype.updateAttributes__patch_Chatbot_{id}'
       parameters:
         - name: data
           in: body
@@ -638,7 +638,7 @@ paths:
           schema:
             $ref: '#/definitions/Chatbot'
       deprecated: false
-  '/Chatbots/{id}/replace':
+  '/Chatbot/{id}/replace':
     post:
       tags:
         - Chatbot
@@ -664,7 +664,7 @@ paths:
           schema:
             $ref: '#/definitions/Chatbot'
       deprecated: false
-  /Chatbots/findOne:
+  /Chatbot/findOne:
     get:
       tags:
         - Chatbot
@@ -683,7 +683,7 @@ paths:
           schema:
             $ref: '#/definitions/Chatbot'
       deprecated: false
-  /Chatbots/update:
+  /Chatbot/update:
     post:
       tags:
         - Chatbot
@@ -715,7 +715,7 @@ paths:
                 type: number
                 format: double
       deprecated: false
-  /Chatbots/count:
+  /Chatbot/count:
     get:
       tags:
         - Chatbot
@@ -738,7 +738,7 @@ paths:
                 type: number
                 format: double
       deprecated: false
-  /Chatbots/chat:
+  /Chatbot/chat:
     post:
       tags:
         - Chatbot

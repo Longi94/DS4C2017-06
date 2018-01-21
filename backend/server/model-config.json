@@ -21,5 +21,9 @@
   "Chatbot": {
     "dataSource": null,
     "public": true
+  },
+  "Song": {
+    "dataSource": "db",
+    "public": true
   }
 }
