@@ -378,6 +378,386 @@ paths:
               response:
                 type: string
       deprecated: false
+  /Chatbots:
+    post:
+      tags:
+        - Chatbot
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Chatbot.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+    put:
+      tags:
+        - Chatbot
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Chatbot.upsert__put_Chatbots
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+    patch:
+      tags:
+        - Chatbot
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Chatbot.upsert__patch_Chatbots
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+    get:
+      tags:
+        - Chatbot
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: Chatbot.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Chatbot'
+      deprecated: false
+  /Chatbots/replaceOrCreate:
+    post:
+      tags:
+        - Chatbot
+      summary: Replace an existing model instance or insert a new one into the data source.
+      operationId: Chatbot.replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+  /Chatbots/upsertWithWhere:
+    post:
+      tags:
+        - Chatbot
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
+      operationId: Chatbot.upsertWithWhere
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+  '/Chatbots/{id}/exists':
+    get:
+      tags:
+        - Chatbot
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Chatbot.exists__get_Chatbots_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/Chatbots/{id}':
+    head:
+      tags:
+        - Chatbot
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Chatbot.exists__head_Chatbots_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - Chatbot
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: Chatbot.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: 'Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+    delete:
+      tags:
+        - Chatbot
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: Chatbot.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - Chatbot
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Chatbot.prototype.updateAttributes__put_Chatbots_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Chatbot'
+        - name: id
+          in: path
+          description: Chatbot id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+    patch:
+      tags:
+        - Chatbot
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Chatbot.prototype.updateAttributes__patch_Chatbots_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Chatbot'
+        - name: id
+          in: path
+          description: Chatbot id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+  '/Chatbots/{id}/replace':
+    post:
+      tags:
+        - Chatbot
+      summary: Replace attributes for a model instance and persist it into the data source.
+      operationId: Chatbot.replaceById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+  /Chatbots/findOne:
+    get:
+      tags:
+        - Chatbot
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: Chatbot.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Chatbot'
+      deprecated: false
+  /Chatbots/update:
+    post:
+      tags:
+        - Chatbot
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: Chatbot.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Chatbot'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Information related to the outcome of the operation
+            type: object
+            properties:
+              count:
+                description: The number of instances updated
+                type: number
+                format: double
+      deprecated: false
+  /Chatbots/count:
+    get:
+      tags:
+        - Chatbot
+      summary: Count instances of the model matched by where from the data source.
+      operationId: Chatbot.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /Chatbots/chat:
+    post:
+      tags:
+        - Chatbot
+      operationId: Chatbot.chat
+      parameters:
+        - name: userInput
+          in: formData
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              respose:
+                type: string
+      deprecated: false
 definitions:
   UserInput:
     properties:
@@ -389,6 +769,12 @@ definitions:
     additionalProperties: false
   x-any:
     properties: {}
+  Chatbot:
+    properties:
+      id:
+        type: number
+        format: double
+    additionalProperties: false
 basePath: /api
 swagger: '2.0'
 info:
