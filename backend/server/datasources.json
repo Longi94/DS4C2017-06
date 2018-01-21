@@ -2,21 +2,5 @@
   "db": {
     "name": "db",
     "connector": "memory"
-  },
-  "cloudant-songs": {
-    "url": "https://cbdc4912-0df2-47fb-840f-5de13348dace-bluemix:0e46070137e3f41d04a1af732645abbff35cb75239bb981e7e1c96f082f41454@cbdc4912-0df2-47fb-840f-5de13348dace-bluemix.cloudant.com",
-    "database": "songs",
-    "username": "cbdc4912-0df2-47fb-840f-5de13348dace-bluemix",
-    "password": "0e46070137e3f41d04a1af732645abbff35cb75239bb981e7e1c96f082f41454",
-    "name": "cloudant-songs",
-    "connector": "cloudant"
-  },
-  "cloudant-feed": {
-    "url": "https://cbdc4912-0df2-47fb-840f-5de13348dace-bluemix:0e46070137e3f41d04a1af732645abbff35cb75239bb981e7e1c96f082f41454@cbdc4912-0df2-47fb-840f-5de13348dace-bluemix.cloudant.com",
-    "database": "feed",
-    "username": "cbdc4912-0df2-47fb-840f-5de13348dace-bluemix",
-    "password": "0e46070137e3f41d04a1af732645abbff35cb75239bb981e7e1c96f082f41454",
-    "name": "cloudant-feed",
-    "connector": "cloudant"
   }
 }

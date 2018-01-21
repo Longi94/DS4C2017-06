@@ -1,5 +1,6 @@
 {
-  "name": "TextInput",
+  "name": "UserInput",
+  "plural": "UserInputs",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

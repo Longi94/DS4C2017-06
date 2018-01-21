@@ -1,13 +1,13 @@
 product: '1.0.0'
 
 info:
-  name: ds4c2017-06-backend
-  title: DS4C2017-06-backend
+  name: backend
+  title: backend
   version: "1.0.0"
 
 apis:
-  'ds4c2017-06-backend':
-    $ref: DS4C2017-06-backend.yaml
+  'backend':
+    $ref: backend.yaml
 
 visibility:
   view:

@@ -13,39 +13,9 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "db"
-  },
-  "AccessToken": {
+  "UserInput": {
     "dataSource": "db",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "db",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "db",
-    "public": false,
-    "options": {
-      "strictObjectIDCoercion": true
-    }
-  },
-  "Role": {
-    "dataSource": "db",
-    "public": false
-  },
-  "Song": {
-    "dataSource": "cloudant-songs",
     "public": true,
     "strict": false
-  },
-  "Feed": {
-    "dataSource": "cloudant-feed",
-    "public": true
-  },
-  "TextInput": {
-    "dataSource": "db",
-    "public": true
   }
 }

@@ -1,5 +1,0 @@
-applications:
-- name: DS4C2017-06-backend
-  routes:
-  - route: ds4c2017-06-server.mybluemix.net
-  memory: 1024M
