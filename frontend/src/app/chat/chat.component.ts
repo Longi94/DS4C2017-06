@@ -61,10 +61,10 @@ export class ChatComponent implements OnInit {
     this.messages.push({text: this.messageInput, fromBot: false});
     this.wordCount += message.split(' ').length;
 
-    this.messageInput = "";
     this.chatService.sendMessage(this.messageInput).subscribe(response => {
-      this.messages.push(response);
+      this.messages.push({text: response.response, fromBot: true});
     });
+    this.messageInput = "";
   }
 
   getRecommendation(resultModal) {

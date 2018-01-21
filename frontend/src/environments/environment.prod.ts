@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: "https://backend-pipeline-uncentralised-sp.mybluemix.net/api"
+  apiBaseUrl: "https://ds4c1706-server.mybluemix.net/api"
 };

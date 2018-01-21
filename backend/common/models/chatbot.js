@@ -7,7 +7,7 @@ var API_KEY = "CC6fpvu_A4khBgNslABBRJ64jtg";
 module.exports = function(Chatbot) {
 
 	Chatbot.chat = function(req, userInput, callback) {
-		 
+
 		var ssn = req.session;
 
 		if(!ssn.cs){
@@ -24,7 +24,7 @@ module.exports = function(Chatbot) {
 
 		var body = '';
 		var req = http.request(options, function(response) {
-	  
+
 		  response.on('data', function (chunk) {
 				    body += chunk;
 			});
@@ -65,7 +65,7 @@ module.exports = function(Chatbot) {
       ],
       returns: [
         {
-          arg: 'respose',
+          arg: 'response',
           type: 'string',
           root: false,
           description: ''
