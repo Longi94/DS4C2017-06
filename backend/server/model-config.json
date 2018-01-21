@@ -13,26 +13,13 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "db"
-  },
-  "AccessToken": {
+  "UserInput": {
     "dataSource": "db",
-    "public": false
+    "public": true,
+    "strict": false
   },
-  "ACL": {
-    "dataSource": "db",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "db",
-    "public": false,
-    "options": {
-      "strictObjectIDCoercion": true
-    }
-  },
-  "Role": {
-    "dataSource": "db",
-    "public": false
+  "Chatbot": {
+    "dataSource": null,
+    "public": true
   }
 }
