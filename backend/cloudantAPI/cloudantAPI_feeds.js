@@ -9,7 +9,7 @@ class CloudantAPIError extends Error {
     }
 }
 
-class CloudantAPI_Songs {
+class CloudantAPI_feeds {
     constructor() {
         this.endpoint = 'https://api.us.apiconnect.ibmcloud.com/tltranstudentvunl-dev/sb/api/Feeds';
         this.headers = { 
@@ -38,7 +38,25 @@ class CloudantAPI_Songs {
 
         });
     }
+
+    getFeed(feed, callback) {
+        var options = { 
+            method: 'GET',
+            url: this.endpoint,
+            qs: {},
+            headers: this.headers
+        };
+
+        request(options, function (error, response, body) {
+          if (error) return console.error('Failed: %s', error.message);
+
+          console.log('Success: ', body);
+
+          callback(null, body);
+
+        });
+    }
 }
 
 
-module.exports = CloudantAPI_Songs;
+module.exports = CloudantAPI_feeds;

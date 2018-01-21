@@ -25,5 +25,9 @@
   "Song": {
     "dataSource": "db",
     "public": true
+  },
+  "Feed": {
+    "dataSource": "db",
+    "public": true
   }
 }
