@@ -2,5 +2,5 @@ applications:
 - name: DS4C2017-06-frontend
   routes:
   - route: music-chat.mybluemix.net
-  memory: 1024M
+  memory: 128M
   buildpack: staticfile_buildpack

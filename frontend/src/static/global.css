@@ -1,0 +1,10 @@
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body > .container {
+  margin-top: 76px;
+  margin-bottom: 20px;
+}
