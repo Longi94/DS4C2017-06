@@ -5,11 +5,11 @@ module.exports = function(Feed) {
 
 	//getFeeds
 	
-	Feed.getFeed = function(text, callback) {
+	Feed.getFeeds = function(callback) {
 		 
 		var feedsAPI = new cloudantAPI_feeds();
 
-		feedsAPI.getFeed(text, (error, response) => {
+		feedsAPI.getFeeds({}, (error, response) => {
 		    if(error) throw error;
 		    console.log(response);
 
@@ -17,21 +17,17 @@ module.exports = function(Feed) {
 		});
 	}
 
-	Feed.remoteMethod('getFeed', {
-		accepts: {arg: 'text', type: 'string'},
-		returns: {arg: 'response', type: 'string'}
+	Feed.remoteMethod('getFeeds', {
+		returns: {arg: 'response', type: 'object'}
 	});
 
 	// postFeeds
 
-	Feed.postFeed = function(text, callback) {
+	Feed.postFeed = function(feed, callback) {
 		 
 		var feedsAPI = new cloudantAPI_feeds();
 
-		songsAPI.postSong({
-		    name: 'aaaaaaaaaaaa',
-		    id: '123456789'
-		}, (error, response) => {
+		songsAPI.postFeed(feed, (error, response) => {
 		    if(error) throw error;
 		    console.log(response);
 
@@ -41,7 +37,7 @@ module.exports = function(Feed) {
 
 	Feed.remoteMethod('postFeed', {
 		accepts: {arg: 'text', type: 'string'},
-		returns: {arg: 'response', type: 'string'}
+		returns: {arg: 'response', type: 'object'}
 	});
 
 };

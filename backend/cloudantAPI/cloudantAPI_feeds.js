@@ -39,11 +39,11 @@ class CloudantAPI_feeds {
         });
     }
 
-    getFeed(feed, callback) {
+    getFeeds(feed, callback) {
         var options = { 
             method: 'GET',
+            qs: { filter: {"include":["client","song"]} },
             url: this.endpoint,
-            qs: {},
             headers: this.headers
         };
 
