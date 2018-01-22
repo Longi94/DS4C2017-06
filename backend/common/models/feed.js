@@ -18,7 +18,8 @@ module.exports = function(Feed) {
 	}
 
 	Feed.remoteMethod('getFeeds', {
-		returns: {arg: 'response', type: 'object'}
+		returns: {arg: 'response', type: 'object'},
+		http: {path: '/getFeeds', verb: 'get'}
 	});
 
 	// postFeeds

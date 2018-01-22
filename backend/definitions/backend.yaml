@@ -1498,7 +1498,7 @@ paths:
                 format: double
       deprecated: false
   /Feeds/getFeeds:
-    post:
+    get:
       tags:
         - Feed
       operationId: Feed.getFeeds
