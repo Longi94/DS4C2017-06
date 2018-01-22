@@ -27,13 +27,13 @@
 <form (ngSubmit)="sendMessage()">
   <div class="input-group mb-3">
     <input type="text" class="form-control" id="chat-input" placeholder="Say something nice..." name="message"
-           [(ngModel)]="messageInput" autocomplete="off" [disabled]="!authenticated">
+           [(ngModel)]="messageInput" autocomplete="off" [disabled]="!authenticated || loading">
     <div class="input-group-append">
-      <button class="btn btn-primary" type="submit" [disabled]="!authenticated">Send</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!authenticated || loading">Send</button>
     </div>
   </div>
 </form>
-<button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100" (click)="getRecommendation(resultModal)">
+<button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100 || loading" (click)="getRecommendation(resultModal)">
   {{wordCount < 100 ? ('Chat with the bot a little more... Words left: ' + (100 - wordCount)) : 'Get song recommendation'}}
 </button>
 

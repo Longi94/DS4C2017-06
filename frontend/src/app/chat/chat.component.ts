@@ -43,6 +43,7 @@ export class ChatComponent implements OnInit {
   }
 
   authenticated: boolean;
+  loading = false;
 
   ngOnInit() {
     this.authenticated = AuthService.authenticated();
@@ -58,11 +59,13 @@ export class ChatComponent implements OnInit {
     if (message === "" || message === " ") {
       return;
     }
+    this.loading = true;
     this.messages.push({text: this.messageInput, fromBot: false});
     this.wordCount += message.split(' ').length;
 
     this.chatService.sendMessage(this.messageInput).subscribe(response => {
       this.messages.push({text: response.response, fromBot: true});
+      this.loading = false;
     });
     this.messageInput = "";
   }
@@ -71,6 +74,7 @@ export class ChatComponent implements OnInit {
     if (this.wordCount < 100) {
       return;
     }
+    this.loading = true;
 
     let fullText = this.messages
       .filter(message => !message.fromBot)
@@ -78,6 +82,7 @@ export class ChatComponent implements OnInit {
       .join('. ');
 
     this.musicService.getRecommendedSong(fullText).subscribe(song => {
+      this.loading = false;
       this.resultSong = song;
       this.modalService.open(resultModal).result.then(() => {
         this.resultSong = null;
