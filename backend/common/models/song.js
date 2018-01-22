@@ -2,6 +2,7 @@
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+const request = require('request');
 
 const personalityInsights = new PersonalityInsightsV3({
   url: "https://gateway.watsonplatform.net/personality-insights/api",
@@ -16,6 +17,17 @@ const toneAnalyzer = new ToneAnalyzerV3({
   password: "UpcRHdvKpfC4",
   version_date: '2017-09-21'
 });
+
+const dbOptions = {
+  method: 'GET',
+  url: 'https://api.us.apiconnect.ibmcloud.com/tltranstudentvunl-dev/sb/api/Songs',
+  headers:
+    {
+      accept: 'application/json',
+      'x-ibm-client-secret': 'rD5lP8gW5qL4jB7fK7aS7dF0rP6nK4xD5fI2sO6bB4jW8eJ1tH',
+      'x-ibm-client-id': 'eb4ea9ba-bd16-4789-bfd5-56620abc3d43'
+    }
+};
 
 const watsonResolver = function (resolve, reject) {
   return function (error, result) {
@@ -47,15 +59,27 @@ const analyzeText = function (text, callback) {
   const personalityPromise = new Promise((resolve, reject) => personalityInsights.profile({text: text},
     watsonResolver(resolve, reject)));
 
-  Promise.all([tonePromise, personalityPromise]).then(function (values) {
+  const songsPromise = new Promise((resolve, reject) => {
+    request(dbOptions, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(body);
+      }
+    })
+  });
+
+  Promise.all([tonePromise, personalityPromise, songsPromise]).then(function (values) {
     console.log(values);
 
     const tones = getTones(values[0]);
     const personalities = getPersonalities(values[1]);
 
-    // TODO GET SONG HERE
+    const songs = getTop10Songs(tones, personalities, JSON.parse(values[2]));
 
-    callback({title: 'lmao', artist: 'lmao'});
+    // TODO save a record into feed
+
+    callback({songs: songs});
   }, function (error) {
     console.error(error);
     callback({title: 'nooooo', artist: 'nooooo'});
@@ -94,4 +118,48 @@ const getPersonalities = function (response) {
   let personalities = {};
   response.personality.forEach(personality => personalities[personality.trait_id] = personality.percentile);
   return personalities
+};
+
+const getTop10Songs = function (tones, personalities, songs) {
+
+  let score = [];
+
+  for (let i = 0; i < songs.length; i++) {
+    // Personality Distance
+    let sum = 0;
+    Object.keys(songs[i].personalities).forEach((key) => {
+      sum += Math.pow(2, personalities[key] - songs[i].personalities[key]);
+    });
+
+    let personalityDistance = Math.sqrt(sum);
+
+    //Tone Distance
+    let a = new Set(Object.keys(songs[i].tones));
+    let b = new Set(Object.keys(tones));
+    let union = new Set([...a, ...b]);
+    sum = 0;
+
+    // console.log('Success: ', query
+    union.forEach((key) => {
+      if (!tones[key]) {
+        tones[key] = 0;
+      }
+
+      if (!songs[i].tones[key]) {
+        songs[i].tones[key] = 0;
+      }
+      sum += Math.pow(2, tones[key] - songs[i].tones[key]);
+    });
+
+    let toneDistance = Math.sqrt(sum);
+
+    score.push({
+      song: songs[i],
+      score: personalityDistance + toneDistance
+    });
+  }
+
+  score.sort((a, b) => a.score - b.score);
+
+  return score.splice(0, 10).map(score => score.song);
 };

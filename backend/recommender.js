@@ -24,7 +24,52 @@ var testTones = {
 };
 
 
+request(options, function (error, response, body) {
+  let songs = JSON.parse(body);
+  let tones = testTones;
+  let personalities = testPersonality;
+  let score = [];
 
+  for (let i = 0; i < songs.length; i++) {
+    // Personality Distance
+    let sum = 0;
+    Object.keys(songs[i].personalities).forEach((key) => {
+      sum += Math.pow(2, personalities[key] - songs[i].personalities[key]);
+    });
+
+    let personalityDistance = Math.sqrt(sum);
+
+    //Tone Distance
+    let a = new Set(Object.keys(songs[i].tones));
+    let b = new Set(Object.keys(tones));
+    let union = new Set([...a, ...b]);
+    sum = 0;
+
+    // console.log('Success: ', query
+    union.forEach((key) => {
+      if (!tones[key]) {
+        tones[key] = 0;
+      }
+
+      if (!songs[i].tones[key]) {
+        songs[i].tones[key] = 0;
+      }
+      sum += Math.pow(2, tones[key] - songs[i].tones[key]);
+    });
+
+    let toneDistance = Math.sqrt(sum);
+
+    score.push({
+      song: songs[i],
+      score: personalityDistance + toneDistance
+    });
+  }
+
+  score.sort((a, b) => a.score - b.score);
+
+  console.log(score);
+});
+/*
 request(options, function (error, response, body, testTone, testPersonality) {
   if (error) return console.error('Failed: %s', error.message);
   var query = JSON.parse(body)
@@ -66,3 +111,4 @@ var toneDistance = [];
 toneDistance.sort((a, b) => a[1] - b[1])
 personalityDistance.sort((a, b) => a[1] - b[1])
 });
+*/
