@@ -1507,10 +1507,9 @@ paths:
         '200':
           description: Request was successful
           schema:
-            type: object
-            properties:
-              response:
-                type: object
+            type: array
+            items:
+              $ref: '#/definitions/x-any'
       deprecated: false
   /Feeds/postFeed:
     post:
@@ -1519,6 +1518,71 @@ paths:
       operationId: Feed.postFeed
       parameters:
         - name: text
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              response:
+                type: object
+      deprecated: false
+  /Clients/register:
+    post:
+      tags:
+        - Client
+      operationId: Client.register
+      parameters:
+        - name: username
+          in: formData
+          required: false
+          type: string
+        - name: email
+          in: formData
+          required: false
+          type: string
+        - name: password
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              response:
+                type: string
+      deprecated: false
+  /Clients/login:
+    post:
+      tags:
+        - Client
+      operationId: Client.login
+      parameters:
+        - name: user
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              response:
+                type: string
+      deprecated: false
+  /Clients/logout:
+    post:
+      tags:
+        - Client
+      operationId: Client.logout
+      parameters:
+        - name: accessToken
           in: formData
           required: false
           type: string

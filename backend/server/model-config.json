@@ -29,5 +29,9 @@
   "Feed": {
     "dataSource": "db",
     "public": true
+  },
+  "Client": {
+    "dataSource": null,
+    "public": true
   }
 }
