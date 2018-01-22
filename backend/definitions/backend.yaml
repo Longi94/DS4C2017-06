@@ -1118,6 +1118,25 @@ paths:
                 type: number
                 format: double
       deprecated: false
+  /Songs/recommend:
+    post:
+      tags:
+        - Song
+      operationId: Song.recommend
+      parameters:
+        - name: text
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              song:
+                type: object
+      deprecated: false
   /Feeds:
     post:
       tags:
@@ -1478,11 +1497,11 @@ paths:
                 type: number
                 format: double
       deprecated: false
-  /Feeds/getFeed:
+  /Feeds/getFeeds:
     post:
       tags:
         - Feed
-      operationId: Feed.getFeed
+      operationId: Feed.getFeeds
       parameters: []
       responses:
         '200':
@@ -1491,7 +1510,7 @@ paths:
             type: object
             properties:
               response:
-                type: string
+                type: object
       deprecated: false
   /Feeds/postFeed:
     post:
@@ -1510,7 +1529,7 @@ paths:
             type: object
             properties:
               response:
-                type: string
+                type: object
       deprecated: false
 definitions:
   UserInput:
@@ -1531,9 +1550,16 @@ definitions:
     additionalProperties: false
   Song:
     properties:
+      artist:
+        type: string
+      title:
+        type: string
       id:
         type: number
         format: double
+    required:
+      - artist
+      - title
     additionalProperties: false
   Feed:
     properties:
