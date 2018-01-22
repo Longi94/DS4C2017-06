@@ -38,6 +38,24 @@ class CloudantAPI_Songs {
 
         });
     }
+
+    getSongs(song, callback) {
+        var options = { 
+            method: 'GET',
+            url: this.endpoint,
+            qs: {},
+            headers: this.headers
+        };
+
+        request(options, function (error, response, body) {
+          if (error) return console.error('Failed: %s', error.message);
+
+          console.log('Success: ', body);
+
+          callback(null, body);
+
+        });
+    }
 }
 
 
