@@ -1,8 +1,9 @@
 import { Song } from "./song";
+import { Client } from "./client";
 
 export class FeedItem {
-  id: number;
-  user: string;
+  id: string;
+  client: Client;
   song: Song;
-  timestamp: Date;
+  date: string;
 }

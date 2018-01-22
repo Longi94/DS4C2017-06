@@ -12,7 +12,7 @@ export class FeedService {
   constructor(private httpClient: HttpClient) {
   }
 
-  private feedUrl = environment.apiBaseUrl + '/feed';
+  private feedUrl = environment.apiBaseUrl + '/Feeds/getFeeds';
 
   getFeed(): Observable<FeedItem[]> {
     return this.httpClient.get<FeedItem[]>(this.feedUrl)

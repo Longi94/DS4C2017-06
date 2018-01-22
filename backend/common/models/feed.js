@@ -1,44 +1,44 @@
 'use strict';
 const cloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
 
-module.exports = function(Feed) {
+module.exports = function (Feed) {
 
-	//getFeeds
-	
-	Feed.getFeeds = function(callback) {
-		 
-		var feedsAPI = new cloudantAPI_feeds();
+  //getFeeds
 
-		feedsAPI.getFeeds({}, (error, response) => {
-		    if(error) throw error;
-		    console.log(response);
+  Feed.getFeeds = function (callback) {
 
-		    callback(null, response);
-		});
-	}
+    var feedsAPI = new cloudantAPI_feeds();
 
-	Feed.remoteMethod('getFeeds', {
-		returns: {arg: 'response', type: 'object'},
-		http: {path: '/getFeeds', verb: 'get'}
-	});
+    feedsAPI.getFeeds({}, (error, response) => {
+      if (error) throw error;
+      console.log(response);
 
-	// postFeeds
+      callback(null, JSON.parse(response));
+    });
+  };
 
-	Feed.postFeed = function(feed, callback) {
-		 
-		var feedsAPI = new cloudantAPI_feeds();
+  Feed.remoteMethod('getFeeds', {
+    returns: {type: 'array', root: true},
+    http: {path: '/getFeeds', verb: 'get'}
+  });
 
-		songsAPI.postFeed(feed, (error, response) => {
-		    if(error) throw error;
-		    console.log(response);
+  // postFeeds
 
-		    callback(null, response);
-		});
-	}
+  Feed.postFeed = function (feed, callback) {
 
-	Feed.remoteMethod('postFeed', {
-		accepts: {arg: 'text', type: 'string'},
-		returns: {arg: 'response', type: 'object'}
-	});
+    var feedsAPI = new cloudantAPI_feeds();
+
+    songsAPI.postFeed(feed, (error, response) => {
+      if (error) throw error;
+      console.log(response);
+
+      callback(null, response);
+    });
+  };
+
+  Feed.remoteMethod('postFeed', {
+    accepts: {arg: 'text', type: 'string'},
+    returns: {arg: 'response', type: 'object'}
+  });
 
 };
