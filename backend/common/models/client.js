@@ -19,10 +19,15 @@ module.exports = function(Client) {
 		});
 	}
 
-	Client.login = function(user, callback){
+	Client.login = function(username, password, callback){
+		var user = {
+			username: username,
+			password: password
+		};
 		UsersAPI.loginUser(user,(error,response)=>{
 			if(error) throw error;
 			console.log(response);
+
 			callback(null,response);
 		});
 	}
@@ -41,12 +46,11 @@ module.exports = function(Client) {
 	});
 
 	Client.remoteMethod('login',{
-		accepts: {arg: 'user', type: 'string'},
+		accepts: [{arg: 'username', type: 'string'}, {arg: 'password', type: 'string'}],
 		returns: {arg: 'response', type: 'string'}
 	});
 
 	Client.remoteMethod('logout', {
-		accepts: {arg: 'accessToken',type:'string'},
 		returns: {arg: 'response', type:'response'}
 	});
 
