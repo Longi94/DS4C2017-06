@@ -22,13 +22,10 @@ def analyze_tones(lyrics):
 
     tones = {}
 
-    if 'sentences_tone' not in result_json and "document_tone" in result_json:
+    if 'sentences_tone' not in result_json:
         for tone in result_json['document_tone']['tones']:
             tones[tone['tone_id']] = tone['score']
         return tones
-    else:
-    	print("No tone")
-    	print(result_json)
 
     sentences = filter(lambda x: len(x['tones']) > 0, result_json['sentences_tone'])
 
