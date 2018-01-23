@@ -40,14 +40,38 @@ const watsonResolver = function (resolve, reject) {
 };
 
 module.exports = function (Song) {
-  Song.recommend = function (text, callback) {
-    console.log(text);
+  Song.recommend = function (req, text, callback) {
+    const accessToken = req.headers.authorization;
+
+    // TODO check if access token exists in db, return 403 if not
+
+    if (!accessToken) {
+      let error = new Error();
+      error.status = 403;
+      return callback(error);
+    }
+
+    // TODO get the user by accesstoken to save into the feed database
+
     analyzeText(text, callback);
   };
 
   Song.remoteMethod('recommend', {
-    accepts: {arg: 'text', type: 'string'},
-    returns: {arg: 'song', type: 'Song'}
+    accepts: [
+      {
+        arg: 'text',
+        type: 'string'
+      },
+      {
+        arg: 'req',
+        type: 'object',
+        required: true,
+        description: '',
+        http: {
+          source: 'req'
+        }
+      }],
+    returns: {type: 'array', root: true}
   });
 };
 
@@ -69,7 +93,7 @@ const analyzeText = function (text, callback) {
     })
   });
 
-  Promise.all([tonePromise, personalityPromise, songsPromise]).then(function (values) {
+  Promise.all([tonePromise, personalityPromise, songsPromise]).then(values => {
     console.log(values);
 
     const tones = getTones(values[0]);
@@ -79,11 +103,8 @@ const analyzeText = function (text, callback) {
 
     // TODO save a record into feed
 
-    callback({songs: songs});
-  }, function (error) {
-    console.error(error);
-    callback({title: 'nooooo', artist: 'nooooo'});
-  })
+    callback(null, {songs: songs});
+  }, error => callback(error));
 };
 
 const getTones = function (response) {
@@ -139,7 +160,6 @@ const getTop10Songs = function (tones, personalities, songs) {
     let union = new Set([...a, ...b]);
     sum = 0;
 
-    // console.log('Success: ', query
     union.forEach((key) => {
       if (!tones[key]) {
         tones[key] = 0;

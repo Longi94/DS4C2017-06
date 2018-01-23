@@ -1,4 +1,4 @@
-'user strict'
+'use strict';
 const cloudantAPI_Users = require('../../cloudantAPI/cloudantAPI_users.js');
 
 module.exports = function (Client) {

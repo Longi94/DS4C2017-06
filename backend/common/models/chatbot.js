@@ -8,6 +8,16 @@ module.exports = function(Chatbot) {
 
 	Chatbot.chat = function(req, userInput, callback) {
 
+    const accessToken = req.headers.authorization;
+
+    // TODO check if access token exists in db, return 403 if not
+
+    if (!accessToken) {
+      let error = new Error();
+      error.status = 403;
+      return callback(error);
+    }
+
 		var ssn = req.session;
 
 		if(!ssn.cs){
