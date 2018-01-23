@@ -20,7 +20,15 @@ class CloudantAPI_feeds {
         };
     }
 
-    postFeed(feed, callback) {
+    postFeed(userId, songId, callback) {
+        var d = new Date();
+        var currentDate = d.toISOString();
+        var feed = {
+            clientId: userId,
+            songId: songId,
+            date: currentDate
+        };
+        
         var options = { 
             method: 'POST',
             url: this.endpoint,
@@ -44,6 +52,24 @@ class CloudantAPI_feeds {
             method: 'GET',
             qs: { filter: {"include":["client","song"]} },
             url: this.endpoint,
+            headers: this.headers
+        };
+
+        request(options, function (error, response, body) {
+          if (error) return console.error('Failed: %s', error.message);
+
+          console.log('Success: ', body);
+
+          callback(null, body);
+
+        });
+    }
+
+    deleteFeed(feedId, callback) {
+        deleteUrl = this.endpoint + '/' + feedId;
+        var options = { 
+            method: 'DELETE',
+            url: deleteUrl
             headers: this.headers
         };
 
