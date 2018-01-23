@@ -1,8 +1,10 @@
 'use strict';
+const cloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 const request = require('request');
+const loopback = require('loopback');
 
 const personalityInsights = new PersonalityInsightsV3({
   url: "https://gateway.watsonplatform.net/personality-insights/api",
@@ -40,6 +42,8 @@ const watsonResolver = function (resolve, reject) {
 };
 
 module.exports = function (Song) {
+  var feedsAPI = new cloudantAPI_feeds();
+
   Song.recommend = function (req, text, callback) {
     const accessToken = req.headers.authorization;
 
@@ -53,7 +57,17 @@ module.exports = function (Song) {
 
     // TODO get the user by accesstoken to save into the feed database
 
-    analyzeText(text, callback);
+    analyzeText(text, (error, songs) => {
+      if(error) callback(null, error);
+
+      var userId = getCurrentUserId();
+      song = songs[0];
+      feedsAPI.postFeed(userId, song.id, (error, body) => {
+        if(error) callback(error);
+        else callback(body);
+      });
+
+    });
   };
 
   Song.remoteMethod('recommend', {
@@ -74,6 +88,13 @@ module.exports = function (Song) {
     returns: {type: 'array', root: true}
   });
 };
+
+const getCurrentUserId() {
+  var ctx = loopback.getCurrentContext();
+  var accessToken = ctx && ctx.get('accessToken');
+  var userId = accessToken && accessToken.userId;
+  return userId;
+}
 
 const analyzeText = function (text, callback) {
 
@@ -103,8 +124,8 @@ const analyzeText = function (text, callback) {
 
     // TODO save a record into feed
 
-    callback(null, {songs: songs});
-  }, error => callback(error));
+    callback(null, songs);
+  }, error => callback(error, null));
 };
 
 const getTones = function (response) {
