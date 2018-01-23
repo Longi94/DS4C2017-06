@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../user.service";
 import { User } from "../model/user";
 import { Router } from "@angular/router";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-register',
@@ -10,17 +10,21 @@ import { Router } from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService,
+  constructor(private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit() {
+    if (AuthService.authenticated()) {
+      this.router.navigate(['/']);
+    }
   }
 
   model = {
     username: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    email: ""
   };
 
   alert: string = "";
@@ -28,6 +32,11 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.model.username.length == 0) {
       this.alert = "Missing username!";
+      return;
+    }
+
+    if (this.model.email.length == 0) {
+      this.alert = "Missing email!";
       return;
     }
 
@@ -47,12 +56,13 @@ export class RegisterComponent implements OnInit {
     }
 
     let user: User = {
-      id: 0,
+      id: null,
       username: this.model.username,
-      password: this.model.password
+      password: this.model.password,
+      email: this.model.email
     };
 
-    this.userService.create(user).subscribe(() => this.router.navigate(['/login']))
+    this.authService.register(user).subscribe(() => this.router.navigate(['/login']));
   }
 
 }

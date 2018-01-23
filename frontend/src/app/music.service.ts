@@ -23,16 +23,16 @@ export class MusicService {
   feed$ = this.feedSource.asObservable();
 
   getRecommendedSong(text: string): Observable<Song> {
-    let dummySong: Song = new Song("dummyTitle", "dummyArtist");
+    let dummySong: Song = {id: null, title: "dummyTitle", artist: "dummyArtist"};
 
     return this.httpClient.post<Song>(this.musicUrl, {text: text}).pipe(
       tap(song => {
         let user = AuthService.getAuthenticatedUser();
         let item: FeedItem = {
-          id: 0,
-          user: user.username,
+          id: null,
+          client: user,
           song: song,
-          timestamp: new Date()
+          date: ""
         };
 
         this.feedSource.next(item);

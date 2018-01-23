@@ -12,7 +12,7 @@ export class ChatService {
   constructor(private httpClient: HttpClient) {
   }
 
-  private chatUrl = environment.apiBaseUrl + '/Chatbots/chat';
+  private chatUrl = environment.apiBaseUrl + '/Chatbot/chat';
 
   sendMessage(text: string): Observable<ChatResponse> {
     const response: ChatResponse = {response: "what???"};

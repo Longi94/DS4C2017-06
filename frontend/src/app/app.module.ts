@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -16,8 +17,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from "./auth.service";
-import { UserService } from "./user.service";
 import { MusicService } from "./music.service";
+import { AuthInterceptor } from "./util/auth-interceptor";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -48,7 +49,11 @@ const routes: Routes = [
     FeedService,
     ChatService,
     AuthService,
-    UserService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [
     NavbarComponent,

@@ -1,9 +1,9 @@
 import { Song } from "./song";
-import { Client } from "./client";
+import { User } from "./user";
 
 export class FeedItem {
   id: string;
-  client: Client;
+  client: User;
   song: Song;
   date: string;
 }
