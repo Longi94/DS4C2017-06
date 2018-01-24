@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
   messageInput: string = "";
   messages: ChatMessage[] = [];
   wordCount: number = 0;
-  resultSong: Song = null;
+  resultSongs: Song[] = null;
 
   sendMessage() {
     let message = this.messageInput.replace(/\s\s+/g, ' ');
@@ -81,11 +81,11 @@ export class ChatComponent implements OnInit {
       .map(message => message.text)
       .join('. ');
 
-    this.musicService.getRecommendedSong(fullText).subscribe(song => {
+    this.musicService.getRecommendedSong(fullText).subscribe(songs => {
       this.loading = false;
-      this.resultSong = song;
+      this.resultSongs = songs;
       this.modalService.open(resultModal).result.then(() => {
-        this.resultSong = null;
+        this.resultSongs = null;
         this.wordCount = 0;
         this.messages = [];
         this.messageInput = "";

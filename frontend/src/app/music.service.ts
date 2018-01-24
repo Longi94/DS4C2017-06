@@ -22,22 +22,19 @@ export class MusicService {
 
   feed$ = this.feedSource.asObservable();
 
-  getRecommendedSong(text: string): Observable<Song> {
-    let dummySong: Song = {id: null, title: "dummyTitle", artist: "dummyArtist"};
-
-    return this.httpClient.post<Song>(this.musicUrl, {text: text}).pipe(
-      tap(song => {
+  getRecommendedSong(text: string): Observable<Song[]> {
+    return this.httpClient.post<Song[]>(this.musicUrl, {text: text}).pipe(
+      tap(songs => {
         let user = AuthService.getAuthenticatedUser();
         let item: FeedItem = {
           id: null,
           client: user,
-          song: song,
+          song: songs[0],
           date: ""
         };
 
         this.feedSource.next(item);
-      }),
-      catchError(HttpUtils.handleError("song", dummySong))
+      })
     );
   }
 
