@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   alert: string = "";
 
   login() {
+    this.alert = "";
+
     if (this.model.username.length == 0) {
       this.alert = "Missing username!";
       return;
@@ -37,7 +39,9 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.model.username, this.model.password).subscribe(() => this.router.navigate(['/']));
+    this.authService.login(this.model.username, this.model.password, () => this.router.navigate(['/']), error => {
+      this.alert = error;
+    });
   }
 
 }

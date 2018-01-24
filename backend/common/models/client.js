@@ -13,6 +13,9 @@ module.exports = function (Client) {
 
     UsersAPI.createUser(user, (error, response) => {
       if (error) return callback(error);
+
+      if (response.error) return callback(response.error);
+
       console.log(response);
 
       callback(null, response);
@@ -26,6 +29,9 @@ module.exports = function (Client) {
     };
     UsersAPI.loginUser(user, (error, response) => {
       if (error) return callback(error);
+
+      if (response.error) return callback(response.error);
+
       console.log(response);
 
       callback(null, response.id, response.created, response.ttl);
@@ -57,20 +63,20 @@ module.exports = function (Client) {
     returns: [
       {arg: 'id', type: 'string'},
       {arg: 'created', type: 'string'},
-      {arg: 'ttl', type: 'number'},
+      {arg: 'ttl', type: 'number'}
     ]
   });
 
   Client.remoteMethod('logout', {
     accepts: [{
-        arg: 'req',
-        type: 'object',
-        required: true,
-        description: '',
-        http: {
-          source: 'req'
-        }
-      }]
+      arg: 'req',
+      type: 'object',
+      required: true,
+      description: '',
+      http: {
+        source: 'req'
+      }
+    }]
   });
 
 };

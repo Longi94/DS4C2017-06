@@ -26,19 +26,21 @@ export class AuthService {
   login$ = this.loginSource.asObservable();
   logout$ = this.logoutSource.asObservable();
 
-  login(username: string, password: string): Observable<User> {
+  login(username: string, password: string, callback: Function, fail: Function) {
     let user: User = new User(username, password);
 
-    return this.httpClient.post<AccessToken>(this.authUrl + "/login", user).pipe(
-      tap(accessToken => {
-        if (accessToken) {
-          localStorage.setItem(USER_KEY, JSON.stringify({username: user.username}));
-          localStorage.setItem(ACCESS_TOKEN, JSON.stringify(accessToken));
-          this.loginSource.next(user);
-        }
-      }),
-      catchError(HttpUtils.handleError("login", null))
-    );
+    this.httpClient.post<AccessToken>(this.authUrl + "/login", user).subscribe(accessToken => {
+      if (!accessToken) {
+        return fail("login failed");
+      }
+
+      localStorage.setItem(USER_KEY, JSON.stringify({username: user.username}));
+      localStorage.setItem(ACCESS_TOKEN, JSON.stringify(accessToken));
+      this.loginSource.next(user);
+      callback();
+    }, error => {
+      fail(error.error.message || error.error.error.message);
+    });
   }
 
   logout(): Observable<any | null> {
@@ -53,9 +55,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.httpClient.post(this.authUrl + "/register", user).pipe(
-      catchError(HttpUtils.handleError("register"))
-    );
+    return this.httpClient.post(this.authUrl + "/register", user);
   }
 
   static authenticated(): boolean {

@@ -62,7 +62,9 @@ export class RegisterComponent implements OnInit {
       email: this.model.email
     };
 
-    this.authService.register(user).subscribe(() => this.router.navigate(['/login']));
+    this.authService.register(user).subscribe(() => this.router.navigate(['/login']), error => {
+      this.alert = error.error.message || error.error.error.message;
+    });
   }
 
 }
