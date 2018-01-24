@@ -79,7 +79,8 @@ module.exports = function (Song) {
         arg: 'text',
         type: 'string'
       }],
-    returns: {type: 'array', root: true}
+    returns: {type: 'array', root: true},
+    description: 'Remote method to launch recommendation engine'
   });
 };
 

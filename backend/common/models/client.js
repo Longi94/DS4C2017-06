@@ -57,7 +57,8 @@ module.exports = function (Client) {
 
   Client.remoteMethod('register', {
     accepts: [{arg: 'username', type: 'string'}, {arg: "email", type: "string"}, {arg: "password", type: "string"}],
-    returns: {arg: 'response', type: 'string'}
+    returns: {arg: 'response', type: 'string'},
+    description: 'Remote method to register a new User'
   });
 
   Client.remoteMethod('login', {
@@ -66,7 +67,8 @@ module.exports = function (Client) {
       {arg: 'id', type: 'string'},
       {arg: 'created', type: 'string'},
       {arg: 'ttl', type: 'number'}
-    ]
+    ],
+    description: 'Remote method to login as a user'
   });
 
   Client.remoteMethod('logout', {
@@ -78,7 +80,8 @@ module.exports = function (Client) {
       http: {
         source: 'req'
       }
-    }]
+    }],
+    description: 'Remote method to logout a user'
   });
 
 };

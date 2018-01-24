@@ -23,6 +23,7 @@ paths:
     post:
       tags:
         - Song
+      summary: Remote method to launch recommendation engine
       operationId: Song.recommend
       parameters:
         - name: text
@@ -41,6 +42,7 @@ paths:
     get:
       tags:
         - Feed
+      summary: Remote method to retrieve all Feed records from database
       operationId: Feed.getFeeds
       parameters: []
       responses:
@@ -52,13 +54,14 @@ paths:
               $ref: '#/definitions/x-any'
       deprecated: false
   /Feeds/deleteFeed:
-    post:
+    delete:
       tags:
         - Feed
+      summary: Remote method to delete Feed record from database
       operationId: Feed.deleteFeed
       parameters:
         - name: feedId
-          in: formData
+          in: path
           required: false
           type: string
       responses:
@@ -74,6 +77,7 @@ paths:
     post:
       tags:
         - Client
+      summary: Remote method to register a new User
       operationId: Client.register
       parameters:
         - name: username
@@ -101,6 +105,7 @@ paths:
     post:
       tags:
         - Client
+      summary: Remote method to login as a user
       operationId: Client.login
       parameters:
         - name: username
@@ -129,6 +134,7 @@ paths:
     post:
       tags:
         - Client
+      summary: Remote method to logout a user
       operationId: Client.logout
       parameters: []
       responses:
