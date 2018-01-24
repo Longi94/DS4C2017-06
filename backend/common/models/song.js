@@ -42,29 +42,25 @@ const watsonResolver = function (resolve, reject) {
 };
 
 module.exports = function (Song) {
-  var feedsAPI = new cloudantAPI_feeds();
+  const feedsAPI = new cloudantAPI_feeds();
 
   Song.recommend = function (req, text, callback) {
     const accessToken = req.headers.authorization;
 
-    // TODO check if access token exists in db, return 403 if not
+    const userId = getCurrentUserId();
 
-    if (!accessToken) {
+    if (!accessToken || !userId) {
       let error = new Error();
       error.status = 403;
       return callback(error);
     }
 
-    // TODO get the user by accesstoken to save into the feed database
-
     analyzeText(text, (error, songs) => {
-      if(error) callback(null, error);
+      if (error) return callback(error);
 
-      var userId = getCurrentUserId();
-      song = songs[0];
-      feedsAPI.postFeed(userId, song.id, (error, body) => {
-        if(error) callback(error);
-        else callback(body);
+      feedsAPI.postFeed(userId, songs[0].id, (error, body) => {
+        if (error) callback(error);
+        else callback(songs);
       });
 
     });
@@ -73,10 +69,6 @@ module.exports = function (Song) {
   Song.remoteMethod('recommend', {
     accepts: [
       {
-        arg: 'text',
-        type: 'string'
-      },
-      {
         arg: 'req',
         type: 'object',
         required: true,
@@ -84,17 +76,21 @@ module.exports = function (Song) {
         http: {
           source: 'req'
         }
+      },
+      {
+        arg: 'text',
+        type: 'string'
       }],
     returns: {type: 'array', root: true}
   });
 };
 
-const getCurrentUserId() {
-  var ctx = loopback.getCurrentContext();
-  var accessToken = ctx && ctx.get('accessToken');
-  var userId = accessToken && accessToken.userId;
-  return userId;
-}
+const getCurrentUserId = function () {
+  //todo this doesnt work
+  const ctx = loopback.getCurrentContext();
+  const accessToken = ctx && ctx.get('accessToken');
+  return accessToken && accessToken.userId;
+};
 
 const analyzeText = function (text, callback) {
 
@@ -122,10 +118,8 @@ const analyzeText = function (text, callback) {
 
     const songs = getTop10Songs(tones, personalities, JSON.parse(values[2]));
 
-    // TODO save a record into feed
-
     callback(null, songs);
-  }, error => callback(error, null));
+  }, error => callback(error));
 };
 
 const getTones = function (response) {
