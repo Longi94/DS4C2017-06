@@ -47,9 +47,7 @@ module.exports = function (Song) {
   Song.recommend = function (req, text, callback) {
     const accessToken = req.headers.authorization;
 
-    const userId = getCurrentUserId();
-
-    if (!accessToken || !userId) {
+    if (!accessToken) {
       let error = new Error();
       error.status = 403;
       return callback(error);
@@ -83,13 +81,6 @@ module.exports = function (Song) {
       }],
     returns: {type: 'array', root: true}
   });
-};
-
-const getCurrentUserId = function () {
-  //todo this doesnt work
-  const ctx = loopback.getCurrentContext();
-  const accessToken = ctx && ctx.get('accessToken');
-  return accessToken && accessToken.userId;
 };
 
 const analyzeText = function (text, callback) {
