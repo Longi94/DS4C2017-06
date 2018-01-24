@@ -1,9 +1,10 @@
 'use strict';
 const cloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
+const cloudantAPI_Users = require('../../cloudantAPI/cloudantAPI_users.js');
 
 module.exports = function (Feed) {
 	var feedsAPI = new cloudantAPI_feeds();
-
+	const UsersAPI = new cloudantAPI_Users();
   //getFeeds
 
   Feed.getFeeds = function (callback) {
@@ -38,5 +39,36 @@ module.exports = function (Feed) {
     returns: {arg: 'response', type: 'object'},
   });
 
+  // postFeed v.2
+  
+  Feed.createFeed = function (req, songId, callback) {
+    const accessToken = req.headers.authorization;
+    if (!accessToken) {
+      let error = new Error();
+      error.status = 403;
+      return callback(error);
+    }
+
+    UsersAPI.createFeed(songId, accessToken, (error, response) => {
+      if (error) callback(error);
+      console.log(response);
+      callback(null);
+    });
+  };  
+  
+  Feed.remoteMethod('createFeed', {
+    accepts: [{
+        arg: 'req',
+        type: 'object',
+        required: true,
+        description: '',
+        http: {
+          source: 'req'
+        }
+      },
+      {
+      	arg: 'songId', type: 'string'
+      }]
+  });
 
 };

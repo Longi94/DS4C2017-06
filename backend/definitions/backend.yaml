@@ -1132,10 +1132,9 @@ paths:
         '200':
           description: Request was successful
           schema:
-            type: object
-            properties:
-              song:
-                type: object
+            type: array
+            items:
+              $ref: '#/definitions/x-any'
       deprecated: false
   /Feeds:
     post:
@@ -1511,13 +1510,13 @@ paths:
             items:
               $ref: '#/definitions/x-any'
       deprecated: false
-  /Feeds/postFeed:
+  /Feeds/deleteFeed:
     post:
       tags:
         - Feed
-      operationId: Feed.postFeed
+      operationId: Feed.deleteFeed
       parameters:
-        - name: text
+        - name: feedId
           in: formData
           required: false
           type: string
@@ -1529,6 +1528,20 @@ paths:
             properties:
               response:
                 type: object
+      deprecated: false
+  /Feeds/createFeed:
+    post:
+      tags:
+        - Feed
+      operationId: Feed.createFeed
+      parameters:
+        - name: songId
+          in: formData
+          required: false
+          type: string
+      responses:
+        '204':
+          description: Request was successful
       deprecated: false
   /Clients/register:
     post:
@@ -1563,7 +1576,11 @@ paths:
         - Client
       operationId: Client.login
       parameters:
-        - name: user
+        - name: username
+          in: formData
+          required: false
+          type: string
+        - name: password
           in: formData
           required: false
           type: string
@@ -1573,27 +1590,23 @@ paths:
           schema:
             type: object
             properties:
-              response:
+              id:
                 type: string
+              created:
+                type: string
+              ttl:
+                type: number
+                format: double
       deprecated: false
   /Clients/logout:
     post:
       tags:
         - Client
       operationId: Client.logout
-      parameters:
-        - name: accessToken
-          in: formData
-          required: false
-          type: string
+      parameters: []
       responses:
-        '200':
+        '204':
           description: Request was successful
-          schema:
-            type: object
-            properties:
-              response:
-                type: object
       deprecated: false
 definitions:
   UserInput:
