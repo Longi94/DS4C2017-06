@@ -48,6 +48,8 @@ module.exports = function (Client) {
 
     UsersAPI.logoutUser(accessToken, (error, response) => {
       if (error) return callback(error);
+
+      if(response.error) return callback(response.error);
       console.log(response);
       callback(null);
     });
