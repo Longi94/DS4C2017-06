@@ -59,8 +59,8 @@ module.exports = function (Song) {
       if (error) return callback(error);
 
       feedsAPI.postFeed(userId, songs[0].id, (error, body) => {
-        if (error) callback(error);
-        else callback(songs);
+        if (error) return callback(error);
+        else callback(null, songs);
       });
 
     });

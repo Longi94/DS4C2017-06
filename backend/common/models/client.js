@@ -12,7 +12,7 @@ module.exports = function (Client) {
     };
 
     UsersAPI.createUser(user, (error, response) => {
-      if (error) callback(error);
+      if (error) return callback(error);
       console.log(response);
 
       callback(null, response);
@@ -25,7 +25,7 @@ module.exports = function (Client) {
       password: password
     };
     UsersAPI.loginUser(user, (error, response) => {
-      if (error) callback(error);
+      if (error) return callback(error);
       console.log(response);
 
       callback(null, response.id, response.created, response.ttl);
@@ -41,7 +41,7 @@ module.exports = function (Client) {
     }
 
     UsersAPI.logoutUser(accessToken, (error, response) => {
-      if (error) callback(error);
+      if (error) return callback(error);
       console.log(response);
       callback(null);
     });

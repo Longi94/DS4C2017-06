@@ -38,7 +38,7 @@ class CloudantAPI_feeds {
         };
 
         request(options, function (error, response, body) {
-          if (error) return console.error('Failed: %s', error.message);
+          if (error) return callback(error);
 
           console.log('Success: ', body);
 
@@ -56,7 +56,7 @@ class CloudantAPI_feeds {
         };
 
         request(options, function (error, response, body) {
-          if (error) return console.error('Failed: %s', error.message);
+          if (error) return callback(error);
 
           console.log('Success: ', body);
 
@@ -74,7 +74,7 @@ class CloudantAPI_feeds {
         };
 
         request(options, function (error, response, body) {
-          if (error) return console.error('Failed: %s', error.message);
+          if (error) return callback(error);
 
           console.log('Success: ', body);
 
