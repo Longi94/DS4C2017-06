@@ -33,6 +33,7 @@
     </div>
   </div>
 </form>
+<div class="alert alert-danger" role="alert" *ngIf="alert.length > 0">{{alert}}</div>
 <button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100 || loading" (click)="getRecommendation(resultModal)">
   {{wordCount < 100 ? ('Chat with the bot a little more... Words left: ' + (100 - wordCount)) : 'Get song recommendation'}}
 </button>

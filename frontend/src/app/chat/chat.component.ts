@@ -53,6 +53,7 @@ export class ChatComponent implements OnInit {
   messages: ChatMessage[] = [];
   wordCount: number = 0;
   resultSongs: Song[] = null;
+  alert: string = "";
 
   sendMessage() {
     let message = this.messageInput.replace(/\s\s+/g, ' ');
@@ -74,6 +75,8 @@ export class ChatComponent implements OnInit {
     if (this.wordCount < 100) {
       return;
     }
+
+    this.alert = "";
     this.loading = true;
 
     let fullText = this.messages
@@ -90,6 +93,9 @@ export class ChatComponent implements OnInit {
         this.messages = [];
         this.messageInput = "";
       });
+    }, error => {
+      console.error(error);
+      this.alert = "Uh oh!, Something went wrong!";
     });
   }
 }
