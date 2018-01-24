@@ -56,6 +56,39 @@ class CloudantAPI_Songs {
 
         });
     }
+
+    linkClient(songId, accessToken, callback) {
+        var d = new Date();
+        var currentDate = d.toISOString();
+        var feed = {
+            date: currentDate
+        }
+        var header =  { 
+            accept: 'application/json',
+            'content-type': 'application/json',
+            'x-ibm-client-secret': 'rD5lP8gW5qL4jB7fK7aS7dF0rP6nK4xD5fI2sO6bB4jW8eJ1tH',
+            'x-ibm-client-id': 'eb4ea9ba-bd16-4789-bfd5-56620abc3d43',
+            'Authorization': accessToken
+        };
+        var options = {
+            method: 'PUT',
+            url: 'https://api.us.apiconnect.ibmcloud.com/tltranstudentvunl-dev/sb/api/Songs/'+songId+'/clients/rel/me',
+            headers: header,
+            body: feed,
+            json: true
+        };
+
+        console.log(options);
+
+        request(options, function (error, response, body) {
+          if (error) callback(null, error);
+
+          console.log('Success: ', body);
+
+          callback(null, body);
+
+        });
+    }
 }
 
 
