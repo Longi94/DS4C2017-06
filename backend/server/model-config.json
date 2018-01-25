@@ -13,11 +13,6 @@
       "./mixins"
     ]
   },
-  "UserInput": {
-    "dataSource": "db",
-    "public": true,
-    "strict": false
-  },
   "Chatbot": {
     "dataSource": null,
     "public": true
