@@ -1,8 +1,8 @@
 'use strict';
-const CloudantAPI_Songs = require('../../cloudantAPI/cloudantAPI_songs.js');
+const CloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
 
 module.exports = function (Feed) {
-	const songsAPI = new CloudantAPI_Songs();
+  const feedsAPI = new CloudantAPI_feeds();
   //getFeeds
 
   Feed.getFeeds = function (callback) {
