@@ -1,0 +1,25 @@
+product: '1.0.0'
+
+info:
+  name: api-cloudant
+  title: api-cloudant
+  version: "1.0.0"
+
+apis:
+  'api-cloudant':
+    $ref: api-cloudant.yaml
+
+visibility:
+  view:
+    type: public
+  subscribe:
+    type: authenticated
+
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      value: 100/hour
+      hard-limit: false

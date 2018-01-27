@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "cloudant-access_tokens",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "cloudant-acl",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "cloudant-role_mappings",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "cloudant-roles",
+    "public": false
+  },
+  "Song": {
+    "dataSource": "cloudant-songs",
+    "public": true
+  },
+  "Feed": {
+    "dataSource": "cloudant-feeds",
+    "public": true
+  },
+  "Client": {
+    "dataSource": "cloudant-clients",
+    "public": true
+  }
+}
