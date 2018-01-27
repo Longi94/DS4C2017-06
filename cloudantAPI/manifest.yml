@@ -1,0 +1,5 @@
+applications:
+- name: DS4C2017-06-cloudant
+  routes:
+  - route: ds4c2017-06-cloudant.mybluemix.net
+  memory: 256M
