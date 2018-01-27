@@ -1,4 +1,6 @@
 'use strict';
+
+const conf = require('../../cloudantAPI/cloudantAPI_conf');
 const cloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
@@ -8,26 +10,26 @@ const loopback = require('loopback');
 
 const personalityInsights = new PersonalityInsightsV3({
   url: "https://gateway.watsonplatform.net/personality-insights/api",
-  username: "a305ea75-d537-4a7b-80ed-ec43966043f4",
-  password: "cnnQB2MSqQGe",
+  username: "f3828a21-d85e-4227-a941-991b03f804f1",
+  password: "WkDLK0iHT8QS",
   version_date: '2017-09-21'
 });
 
 const toneAnalyzer = new ToneAnalyzerV3({
   url: "https://gateway.watsonplatform.net/tone-analyzer/api",
-  username: "6b9d8b2a-b0e0-4ea6-8545-94dbc29ceb1b",
-  password: "UpcRHdvKpfC4",
+  username: "afb675a0-d47e-4e16-91cc-1962be68bbb2",
+  password: "V3otdAze6qBU",
   version_date: '2017-09-21'
 });
 
 const dbOptions = {
   method: 'GET',
-  url: 'https://api.us.apiconnect.ibmcloud.com/tltranstudentvunl-dev/sb/api/Songs',
+  url: conf.endpoint + 'api/Songs',
   headers:
     {
       accept: 'application/json',
-      'x-ibm-client-secret': 'rD5lP8gW5qL4jB7fK7aS7dF0rP6nK4xD5fI2sO6bB4jW8eJ1tH',
-      'x-ibm-client-id': 'eb4ea9ba-bd16-4789-bfd5-56620abc3d43'
+      'x-ibm-client-secret': conf.clientSecret,
+      'x-ibm-client-id': conf.clientId
     }
 };
 
