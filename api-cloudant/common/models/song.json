@@ -1,0 +1,42 @@
+{
+  "name": "Song",
+  "plural": "Songs",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Title of song"
+    },
+    "artist": {
+      "type": "string",
+      "required": false,
+      "description": "Artist that is the author of the song"
+    },
+    "personalities": {
+      "type": "object",
+      "required": false,
+      "description": "Object representing personalities retrieved from Watson Personality Insight"
+    },
+    "tones": {
+      "type": "object",
+      "required": false,
+      "description": "Object representing tones retrieved from Watson Tone Analyser"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "clients": {
+      "type": "hasMany",
+      "model": "Client",
+      "foreignKey": "songId",
+      "through": "Feed"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
