@@ -51,7 +51,7 @@ class CloudantAPI_feeds {
     getFeeds(feed, callback) {
         var options = {
             method: 'GET',
-            qs: { filter: {"include":["client","song"]} },
+            qs: { filter: {"include":["client","song"]}, order: "date DESC" },
             url: this.endpoint,
             headers: this.headers
         };

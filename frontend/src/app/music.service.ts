@@ -30,7 +30,7 @@ export class MusicService {
           id: null,
           client: user,
           song: songs[0],
-          date: ""
+          date: Date.now()
         };
 
         this.feedSource.next(item);

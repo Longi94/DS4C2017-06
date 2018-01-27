@@ -5,5 +5,5 @@ export class FeedItem {
   id: string;
   client: User;
   song: Song;
-  date: string;
+  date: number;
 }

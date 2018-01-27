@@ -1,7 +1,7 @@
 'use strict';
 
 const conf = require('../../cloudantAPI/cloudantAPI_conf');
-const cloudantAPI_feeds = require('../../cloudantAPI/cloudantAPI_feeds.js');
+const cloudantAPI_songs = require('../../cloudantAPI/cloudantAPI_songs');
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
@@ -44,7 +44,7 @@ const watsonResolver = function (resolve, reject) {
 };
 
 module.exports = function (Song) {
-  const feedsAPI = new cloudantAPI_feeds();
+  const songsAPI = new cloudantAPI_songs();
 
   Song.recommend = function (req, text, callback) {
     const accessToken = req.headers.authorization;
@@ -58,7 +58,7 @@ module.exports = function (Song) {
     analyzeText(text, (error, songs) => {
       if (error) return callback(error);
 
-      feedsAPI.postFeed(userId, songs[0].id, (error, body) => {
+      songsAPI.linkClient(songs[0].id, accessToken, (error) => {
         if (error) return callback(error);
         else callback(null, songs);
       });
