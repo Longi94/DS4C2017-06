@@ -51,8 +51,6 @@ class CloudantAPI_Songs {
         request(options, function (error, response, body) {
           if (error) return callback(error);
 
-          console.log('Success: ', body);
-
           callback(null, body);
 
         });
