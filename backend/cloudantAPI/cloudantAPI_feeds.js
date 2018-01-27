@@ -1,5 +1,6 @@
 'use strict';
 
+const conf = require('./cloudantAPI_conf');
 const request = require('request');
 
 class CloudantAPIError extends Error {
@@ -11,12 +12,12 @@ class CloudantAPIError extends Error {
 
 class CloudantAPI_feeds {
     constructor() {
-        this.endpoint = 'https://api.us.apiconnect.ibmcloud.com/tltranstudentvunl-dev/sb/api/Feeds';
+        this.endpoint = conf.endpoint + 'api/Feeds';
         this.headers = {
             accept: 'application/json',
             'content-type': 'application/json',
-            'x-ibm-client-secret': 'rD5lP8gW5qL4jB7fK7aS7dF0rP6nK4xD5fI2sO6bB4jW8eJ1tH',
-            'x-ibm-client-id': 'eb4ea9ba-bd16-4789-bfd5-56620abc3d43'
+            'x-ibm-client-secret': conf.clientSecret,
+            'x-ibm-client-id': conf.clientId
         };
     }
 
