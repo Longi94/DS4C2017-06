@@ -59,10 +59,8 @@ class CloudantAPI_Songs {
     }
 
     linkClient(songId, accessToken, callback) {
-        var d = new Date();
-        var currentDate = d.toISOString();
         var feed = {
-            date: currentDate
+            date: Date.now()
         }
         var header =  {
             accept: 'application/json',
