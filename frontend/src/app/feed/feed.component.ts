@@ -21,7 +21,10 @@ export class FeedComponent implements OnInit {
   }
 
   getFeed(): void {
-    this.feedService.getFeed().subscribe(items => this.feedItems = items);
+    this.feedService.getFeed().subscribe(items => {
+      this.feedItems = items;
+      this.feedItems.sort((a, b) => b.date - a.date);
+    });
   }
 
   formatDate = function (date) {
