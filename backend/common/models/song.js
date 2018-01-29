@@ -57,9 +57,9 @@ module.exports = function (Song) {
     analyzeText(text, (error, songs, tones, personalities) => {
       if (error) return callback(error);
 
-      songsAPI.linkClient(songs[0].id, accessToken, (error) => {
+      songsAPI.linkClient(songs[0].id, accessToken, (error, feedBody) => {
         if (error) return callback(error);
-        else callback(null, songs, tones, personalities);
+        else callback(null, songs, tones, personalities, feedBody);
       });
 
     });
@@ -93,6 +93,10 @@ module.exports = function (Song) {
         arg: 'personality',
         type: 'object',
       },
+      {
+        arg: 'feedBody',
+        type: 'object'
+      }
     ],
     description: 'Remote method to launch recommendation engine'
   });
