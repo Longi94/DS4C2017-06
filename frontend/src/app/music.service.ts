@@ -28,7 +28,7 @@ export class MusicService {
       tap(result => {
         let user = AuthService.getAuthenticatedUser();
         let item: FeedItem = {
-          id: null,
+          id: result.feedBody.id,
           client: user,
           song: result.songs[0],
           date: Date.now()
