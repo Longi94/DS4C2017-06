@@ -6,7 +6,6 @@ const cloudantAPI_songs = require('../../cloudantAPI/cloudantAPI_songs');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 const request = require('request');
-const loopback = require('loopback');
 
 const personalityInsights = new PersonalityInsightsV3({
   url: "https://gateway.watsonplatform.net/personality-insights/api",
@@ -55,12 +54,12 @@ module.exports = function (Song) {
       return callback(error);
     }
 
-    analyzeText(text, (error, songs) => {
+    analyzeText(text, (error, songs, tones, personalities) => {
       if (error) return callback(error);
 
       songsAPI.linkClient(songs[0].id, accessToken, (error) => {
         if (error) return callback(error);
-        else callback(null, songs);
+        else callback(null, songs, tones, personalities);
       });
 
     });
@@ -81,7 +80,20 @@ module.exports = function (Song) {
         arg: 'text',
         type: 'string'
       }],
-    returns: {type: 'array', root: true},
+    returns: [
+      {
+        arg: 'songs',
+        type: 'array',
+      },
+      {
+        arg: 'tone',
+        type: 'object',
+      },
+      {
+        arg: 'personality',
+        type: 'object',
+      },
+    ],
     description: 'Remote method to launch recommendation engine'
   });
 };
@@ -112,7 +124,7 @@ const analyzeText = function (text, callback) {
 
     const songs = getTop10Songs(tones, personalities, JSON.parse(values[2]));
 
-    callback(null, songs);
+    callback(null, songs, tones, personalities);
   }, error => callback(error));
 };
 

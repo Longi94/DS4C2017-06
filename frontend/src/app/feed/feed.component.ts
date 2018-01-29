@@ -13,7 +13,7 @@ export class FeedComponent implements OnInit {
 
   constructor(private feedService: FeedService,
               private musicService: MusicService) {
-    musicService.feed$.subscribe(() => this.getFeed());
+    musicService.feed$.subscribe(item => this.feedItems.unshift(item));
   }
 
   ngOnInit() {

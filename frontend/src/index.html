@@ -7,6 +7,141 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="/assets/js/d3.v3.min.js"></script>
+  <script src="/assets/js/radar-chart.js"></script>
+
+  <script>
+    RadarChart.defaultConfig.color = function () {
+    };
+    RadarChart.defaultConfig.radius = 3;
+    RadarChart.defaultConfig.maxValue = 1;
+    RadarChart.defaultConfig.w = 250;
+    RadarChart.defaultConfig.h = 250;
+    RadarChart.defaultConfig.circles = false;
+
+    let personalities;
+    let tones;
+    let songs;
+    let chart;
+    let svg;
+    let svg2;
+
+    function compare(a, b) {
+      if (a.axis < b.axis)
+        return -1;
+      if (a.axis > b.axis)
+        return 1;
+      return 0;
+    }
+
+    function createCharts(p, t, s) {
+      chart = RadarChart.chart();
+      let cfg = chart.config();
+
+      personalities = p;
+      tones = t;
+      songs = s;
+
+      personalities.unshift(
+        {
+          className: "song-score",
+          axes: [
+            {axis: "openness", value: 0.1},
+            {axis: "conscientiousness", value: 0.1},
+            {axis: "extraversion", value: 0.1},
+            {axis: "agreeableness", value: 0.1},
+            {axis: "neuroticism", value: 0.1}
+          ]
+        }
+      );
+
+      tones.unshift(
+        {
+          className: "song-score",
+          axes: [
+            {axis: "sadness", value: 0.1},
+            {axis: "analytical", value: 0.1},
+            {axis: "fear", value: 0.1},
+            {axis: "anger", value: 0.1},
+            {axis: "tentative", value: 0.1},
+            {axis: "joy", value: 0.1},
+            {axis: "confident", value: 0.1}
+          ]
+        }
+      );
+
+      personalities[0].axes.sort(compare);
+      tones[0].axes.sort(compare);
+
+      svg = d3.select('#personality-graph')
+        .append('svg')
+        .attr('width', cfg.w)
+        .attr('height', cfg.h);
+
+      svg.append('g')
+        .classed('single', 1)
+        .datum(personalities)
+        .call(chart);
+
+      svg2 = d3.select('#tone-graph')
+        .append('svg')
+        .attr('width', cfg.w)
+        .attr('height', cfg.h);
+
+      svg2.append('g')
+        .classed('single', 1)
+        .datum(tones)
+        .call(chart);
+    }
+
+    function changeCharts(index) {
+      let song = songs[index];
+
+      let persAxes = [];
+
+      for (let key in song.personalities) {
+        persAxes.push({
+          axis: key.replace("big5_", ""),
+          value: song.personalities[key] + 0.1
+        });
+      }
+
+      let toneAxes = [];
+      for (let key in song.tones) {
+        toneAxes.push({
+          axis: key,
+          value: song.tones[key] + 0.1
+        });
+      }
+
+      persAxes.sort(compare);
+      toneAxes.sort(compare);
+
+      personalities[0] = {
+        className: "song-score",
+        axes: persAxes
+      };
+
+      tones[0] = {
+        className: "song-score",
+        axes: toneAxes
+      };
+
+      const pers = svg.selectAll('g.single').data([personalities]);
+      pers.call(chart);
+
+      const tone = svg2.selectAll('g.single').data([tones]);
+      tone.call(chart);
+
+    }
+
+    function clearCharts() {
+      document.getElementById("personality-graph").innerHTML = "";
+      document.getElementById("tone-graph").innerHTML = "";
+    }
+
+  </script>
 </head>
 <body>
 <app-navbar></app-navbar>

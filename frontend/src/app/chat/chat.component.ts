@@ -7,6 +7,10 @@ import { MusicService } from "../music.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Song } from "../model/song";
 
+declare function createCharts(personalities: object[], tones: object[], songs: object[]): any;
+declare function changeCharts(index: number): any;
+declare function clearCharts();
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -54,6 +58,7 @@ export class ChatComponent implements OnInit {
   wordCount: number = 0;
   resultSongs: Song[] = null;
   alert: string = "";
+  showResult: boolean = false;
 
   sendMessage() {
     let message = this.messageInput.replace(/\s\s+/g, ' ');
@@ -71,6 +76,16 @@ export class ChatComponent implements OnInit {
     this.messageInput = "";
   }
 
+  retry() {
+    this.showResult = false;
+    this.loading = false;
+    this.resultSongs = null;
+    this.wordCount = 0;
+    this.messages = [];
+    this.messageInput = "";
+    clearCharts();
+  }
+
   getRecommendation(resultModal) {
     if (this.wordCount < 100) {
       return;
@@ -84,18 +99,56 @@ export class ChatComponent implements OnInit {
       .map(message => message.text)
       .join('. ');
 
-    this.musicService.getRecommendedSong(fullText).subscribe(songs => {
-      this.loading = false;
-      this.resultSongs = songs;
-      this.modalService.open(resultModal).result.then(() => {
-        this.resultSongs = null;
-        this.wordCount = 0;
-        this.messages = [];
-        this.messageInput = "";
+    this.musicService.getRecommendedSong(fullText).subscribe(result => {
+      this.resultSongs = result.songs;
+
+      this.showResult = true;
+
+      let persAxes = [];
+
+      for (let key in result.personality) {
+        persAxes.push({
+          axis: key.replace("big5_", ""),
+          value: result.personality[key] + 0.1
+        });
+      }
+
+      let toneAxes = [];
+      for (let key in result.tone) {
+        toneAxes.push({
+          axis: key,
+          value: result.tone[key] + 0.1
+        });
+      }
+
+      persAxes.sort((a, b) => {
+        if (a.axis < b.axis)
+          return -1;
+        if (a.axis > b.axis)
+          return 1;
+        return 0;
       });
+
+      toneAxes.sort((a, b) => {
+        if (a.axis < b.axis)
+          return -1;
+        if (a.axis > b.axis)
+          return 1;
+        return 0;
+      });
+
+      createCharts(
+        [{axes: persAxes, className: 'user-score'}],
+        [{axes: toneAxes, className: 'user-score'}],
+        this.resultSongs
+      );
     }, error => {
       console.error(error);
       this.alert = "Uh oh!, Something went wrong!";
     });
+  }
+
+  changeChartsProxy(index: number) {
+    changeCharts(index);
   }
 }
