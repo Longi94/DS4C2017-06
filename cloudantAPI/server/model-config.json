@@ -27,14 +27,14 @@
   },
   "RoleMapping": {
     "dataSource": "cloudant-role_mappings",
-    "public": false,
+    "public": true,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
     "dataSource": "cloudant-roles",
-    "public": false
+    "public": true
   },
   "Song": {
     "dataSource": "cloudant-songs",

@@ -9,6 +9,7 @@ import moment = require("moment");
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
+
 export class FeedComponent implements OnInit {
 
   constructor(private feedService: FeedService,

@@ -1,8 +1,12 @@
 <h4>Recent results</h4>
 <ul class="list-group">
   <li class="list-group-item feed-item" *ngFor="let feedItem of feedItems">
+  	<div class="float-right">
+  		<button class="btn btn-danger btn-sm">DELETE</button>
+  	</div>
     <span class="feed-user">{{feedItem.client.username}}</span>
     <span class="feed-song">{{feedItem.song.artist + ' - ' + feedItem.song.title}}</span>
     <span class="feed-date">{{formatDate(feedItem.date)}}</span>
+    <span ></span>
   </li>
 </ul>

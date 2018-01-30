@@ -22,7 +22,7 @@ module.exports = function(app) {
 			      if (err) throw err;
 
 			      console.log('Created role:', role);
-
+			      console.log("The user ID is:", user.id);
 			      //make bob an admin
 			      role.principals.create({
 			        principalType: RoleMapping.USER,
