@@ -1,0 +1,51 @@
+{
+  "name": "coverart",
+  "plural": "covers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "artist_name": {
+      "type": "string",
+      "required": true,
+      "updateResource": {
+        "id": "common.coverart.artist_name",
+        "modelId": "common.coverart",
+        "facetName": "common",
+        "name": "artist_name",
+        "type": "string",
+        "required": true
+      }
+    },
+    "picture_url": {
+      "type": "string",
+      "required": true,
+      "updateResource": {
+        "id": "common.coverart.picture_url",
+        "modelId": "common.coverart",
+        "facetName": "common",
+        "name": "picture_url",
+        "type": "string",
+        "required": false
+      }
+    },
+    "song_name": {
+      "type": "string",
+      "required": true,
+      "updateResource": {
+        "id": "common.coverart.song_name",
+        "modelId": "common.coverart",
+        "facetName": "common",
+        "name": "song_name",
+        "type": "string",
+        "required": true
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
