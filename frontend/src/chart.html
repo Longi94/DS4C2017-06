@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.css">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+
+
+</head>
+<body>
+
+<script>
+  RadarChart.defaultConfig.color = function() {};
+  RadarChart.defaultConfig.radius = 3;
+  RadarChart.defaultConfig.maxValue = 1.1;
+  RadarChart.defaultConfig.w = 400;
+  RadarChart.defaultConfig.h = 400;
+</script>
+
+<span></span>
+
+<script>
+  let data = [
+    {
+      className: 'user-score', // optional can be used for styling
+      axes: [
+        {axis: "strength", value: 0.5},
+        {axis: "intelligence", value: 0.5},
+        {axis: "charisma", value: 0.5},
+        {axis: "dexterity", value: 0.5},
+        {axis: "luck", value: 0.5}
+      ]
+    },
+    {
+      className: 'song-score',
+      axes: [
+        {axis: "strength", value: 0.1},
+        {axis: "intelligence", value: 0.1},
+        {axis: "charisma", value: 0.1},
+        {axis: "dexterity", value: 0.1},
+        {axis: "luck", value: 0.1}
+      ]
+    }
+  ];
+
+  const chart = RadarChart.chart();
+
+  let cfg = chart.config(); // retrieve default config
+
+  const svg = d3.select('body')
+    .append('svg')
+    .attr('width', cfg.w)
+    .attr('height', cfg.h);
+
+  svg.append('g')
+    .classed('single', 1)
+    .datum(data)
+    .call(chart);
+
+  // many radars
+  function render() {
+    data[1].axes = data[1].axes.map(row => ({axis: row.axis, value: Math.random() + 0.1}));
+    const single = svg.selectAll('g.single').data([data]);
+
+    single.enter().append('g').classed('single', 1);
+    single.call(chart);
+
+    setTimeout(render, 1000);
+  }
+  render();
+</script>
+
+</body>
+</html>

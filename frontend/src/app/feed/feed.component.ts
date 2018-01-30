@@ -14,7 +14,7 @@ export class FeedComponent implements OnInit {
 
   constructor(private feedService: FeedService,
               private musicService: MusicService) {
-    musicService.feed$.subscribe(() => this.getFeed());
+    musicService.feed$.subscribe(item => this.feedItems.unshift(item));
   }
 
   ngOnInit() {
@@ -22,7 +22,10 @@ export class FeedComponent implements OnInit {
   }
 
   getFeed(): void {
-    this.feedService.getFeed().subscribe(items => this.feedItems = items);
+    this.feedService.getFeed().subscribe(items => {
+      this.feedItems = items;
+      this.feedItems.sort((a, b) => b.date - a.date);
+    });
   }
 
   formatDate = function (date) {

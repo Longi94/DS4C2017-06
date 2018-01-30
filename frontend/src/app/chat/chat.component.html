@@ -37,20 +37,23 @@
 <button type="button" class="btn btn-success btn-lg btn-block" [disabled]="wordCount < 100 || loading" (click)="getRecommendation(resultModal)">
   {{wordCount < 100 ? ('Chat with the bot a little more... Words left: ' + (100 - wordCount)) : 'Get song recommendation'}}
 </button>
+<p *ngIf="showResult" style="margin-top: 20px">Yellow is your score. Click on a song to compare.</p>
+<div class="row">
+  <div class="col center-content" id="personality-graph">
 
-<ng-template #resultModal let-c="close">
-  <div class="modal-header">
-    <h5>We suggest listening to...</h5>
   </div>
-  <div class="modal-body">
-    <h4>{{resultSongs[0].title + ' - ' + resultSongs[0].artist}}</h4>
-    <hr/>
-    <h5>You can also try...</h5>
-    <ul>
-      <li *ngFor="let song of resultSongs | slice:1">{{song.title + ' - ' + song.artist}}</li>
-    </ul>
+  <div class="col center-content" id="tone-graph">
+
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c()">Try again</button>
-  </div>
-</ng-template>
+</div>
+<div *ngIf="showResult">
+  <hr/>
+  <button type="button" class="btn btn-outline-dark" (click)="retry()">Try again</button>
+  <h5>We suggest listening to...</h5>
+  <h4 onclick="changeCharts(0)">{{resultSongs[0].title + ' - ' + resultSongs[0].artist}}</h4>
+  <hr/>
+  <h5>You can also try...</h5>
+  <ul>
+    <li *ngFor="let song of resultSongs | slice:1; let i = index" (click)="changeChartsProxy(i + 1)">{{song.title + ' - ' + song.artist}}</li>
+  </ul>
+</div>

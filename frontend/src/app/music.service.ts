@@ -9,6 +9,7 @@ import { AuthService } from "./auth.service";
 import { FeedItem } from "./model/fedd-item";
 import { Subject } from "rxjs/Subject";
 import { of } from "rxjs/observable/of";
+import { Result } from "./model/result";
 
 @Injectable()
 export class MusicService {
@@ -22,14 +23,14 @@ export class MusicService {
 
   feed$ = this.feedSource.asObservable();
 
-  getRecommendedSong(text: string): Observable<Song[]> {
-    return this.httpClient.post<Song[]>(this.musicUrl, {text: text}).pipe(
-      tap(songs => {
+  getRecommendedSong(text: string): Observable<Result> {
+    return this.httpClient.post<Result>(this.musicUrl, {text: text}).pipe(
+      tap(result => {
         let user = AuthService.getAuthenticatedUser();
         let item: FeedItem = {
-          id: null,
+          id: result.feedBody.id,
           client: user,
-          song: songs[0],
+          song: result.songs[0],
           date: Date.now()
         };
 
