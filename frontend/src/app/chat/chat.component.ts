@@ -4,7 +4,6 @@ import { ChatMessage } from "../model/chat-message";
 import { animate, keyframes, state, style, transition, trigger } from "@angular/animations";
 import { AuthService } from "../auth.service";
 import { MusicService } from "../music.service";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Song } from "../model/song";
 
 declare function createCharts(personalities: object[], tones: object[], songs: object[]): any;
@@ -42,8 +41,7 @@ export class ChatComponent implements OnInit {
 
   constructor(private chatService: ChatService,
               private authService: AuthService,
-              private musicService: MusicService,
-              private modalService: NgbModal) {
+              private musicService: MusicService) {
   }
 
   authenticated: boolean;
@@ -86,7 +84,7 @@ export class ChatComponent implements OnInit {
     clearCharts();
   }
 
-  getRecommendation(resultModal) {
+  getRecommendation() {
     if (this.wordCount < 100) {
       return;
     }
