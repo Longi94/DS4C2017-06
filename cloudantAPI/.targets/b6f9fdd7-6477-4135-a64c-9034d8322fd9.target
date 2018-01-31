@@ -82,6 +82,13 @@ app:
     guid: b56b0b6c-711a-4eab-92c7-0086748b4f43
     name: cloudant-api
     routes:
+      - guid: 0e8df9b3-c631-4e09-8fdf-363317da1711
+        host: apiconnect-f388fb2d-432d-429d-9b93-4947010bc7c0
+        port: null
+        path: ''
+        domain:
+          guid: b7c54fbb-d292-4aff-a48c-efb86ba3a93a
+          name: tltranstudentvunl-dev.apic.mybluemix.net
       - guid: 7cee2fa1-9070-4f8d-ade5-34e9beef2432
         host: apiconnect-b56b0b6c-711a-4eab-92c7-0086748b4f43
         port: null
@@ -103,18 +110,18 @@ app:
     space_guid: 2d230889-cfa1-48be-8927-1e22210a6903
     stack_guid: ac91d31a-86a3-453b-babf-8d49c9d763fc
     buildpack: null
-    detected_buildpack: null
-    detected_buildpack_guid: null
+    detected_buildpack: 'SDK for Node.js(TM) (ibm-node.js-6.12.2, buildpack-v3.17-20180105-1100)'
+    detected_buildpack_guid: ec7a268b-3c6a-4132-a3ce-096b8a53c5cf
     environment_json: {}
     memory: 256
     instances: 1
     disk_quota: 1024
     state: STOPPED
-    version: 812c35a0-38fe-4747-ae70-f40d679a4fee
+    version: 548bed1a-9a15-4809-b0ab-11d8da31da02
     command: null
-    console: false
+    console: true
     debug: null
-    staging_task_id: null
+    staging_task_id: 56c1b290-5d7c-4a05-b24a-dd2393d55554
     package_state: PENDING
     health_check_type: port
     health_check_timeout: null
@@ -123,8 +130,8 @@ app:
     staging_failed_description: null
     diego: true
     docker_image: null
-    package_updated_at: '2018-01-27T15:41:26Z'
-    detected_start_command: ''
+    package_updated_at: '2018-01-31T15:27:49Z'
+    detected_start_command: ./vendor/initial_startup.rb
     enable_ssh: true
     ports: null
 id: b6f9fdd7-6477-4135-a64c-9034d8322fd9
@@ -134,4 +141,4 @@ versionOptions:
 publishApp: true
 publishProducts: true
 workspaceDir:
-  path: 'C:\Users\lngtr\source\repos\DS4C2017-06\cloudantAPI'
+  path: /Users/konradkaras/Documents/GitHub/DS4C2017-06/cloudantAPI

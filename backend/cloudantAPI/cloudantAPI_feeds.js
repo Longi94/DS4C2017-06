@@ -66,14 +66,21 @@ class CloudantAPI_feeds {
         });
     }
 
-    deleteFeed(feedId, callback) {
+    deleteFeed(feedId, accessToken, callback) {
         const deleteUrl = this.endpoint + '/' + feedId;
+        var header = {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            'x-ibm-client-secret': conf.clientSecret,
+            'x-ibm-client-id': conf.clientId,
+            'Authorization' : accessToken
+        };
         var options = {
             method: 'DELETE',
             url: deleteUrl,
-            headers: this.headers
+            headers: header
         };
-
+        console.log(options);
         request(options, function (error, response, body) {
           if (error) return callback(error);
 
