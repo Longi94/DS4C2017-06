@@ -50,10 +50,16 @@
   <hr/>
   <button type="button" class="btn btn-outline-dark" (click)="retry()">Try again</button>
   <h5>We suggest listening to...</h5>
-  <h4 onclick="changeCharts(0)">{{resultSongs[0].title + ' - ' + resultSongs[0].artist}}</h4>
+  <div>
+    <img [src]="resultSongs[0].cover" style="width: 300px; height: 300px;"/>
+    <h4 onclick="changeCharts(0)">{{resultSongs[0].title + ' - ' + resultSongs[0].artist}}</h4>
+  </div>
   <hr/>
   <h5>You can also try...</h5>
   <ul>
-    <li *ngFor="let song of resultSongs | slice:1; let i = index" (click)="changeChartsProxy(i + 1)">{{song.title + ' - ' + song.artist}}</li>
+    <li *ngFor="let song of resultSongs | slice:1; let i = index" (click)="changeChartsProxy(i + 1)">
+      <img [src]="song.cover" style="width: 100px; height: 100px;"/>
+      {{song.title + ' - ' + song.artist}}
+    </li>
   </ul>
 </div>
