@@ -22,7 +22,8 @@ module.exports = function(Client) {
 	}
 
 	Client.remoteMethod('checkIfAdmin', {
-		accepts: {arg: "userId", type:"string"},
-		returns: {arg: "isAdmin", type:"boolean"}
+		accepts: {arg: "userId", type:"string", description: "Id of User"},
+		returns: {arg: "isAdmin", type:"boolean"},
+		description: "Check if specified user has Admin role assigned"
 	});
 };

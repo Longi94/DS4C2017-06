@@ -15,7 +15,7 @@
     },
     "date": {
       "type": "date",
-      "required": false,
+      "required": true,
       "description": "Timestamp of feed creation"
     },
     "songId": {

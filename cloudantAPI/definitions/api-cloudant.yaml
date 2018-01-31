@@ -1,957 +1,4 @@
 paths:
-  '/RoleMappings/{id}/role':
-    get:
-      tags:
-        - RoleMapping
-      summary: Fetches belongsTo relation role.
-      operationId: RoleMapping.prototype.__get__role
-      parameters:
-        - name: refresh
-          in: query
-          required: false
-          type: boolean
-        - name: id
-          in: path
-          description: RoleMapping id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  /RoleMappings:
-    post:
-      tags:
-        - RoleMapping
-      summary: Create a new instance of the model and persist it into the data source.
-      operationId: RoleMapping.create
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    put:
-      tags:
-        - RoleMapping
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
-      operationId: RoleMapping.upsert__put_RoleMappings
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    patch:
-      tags:
-        - RoleMapping
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
-      operationId: RoleMapping.upsert__patch_RoleMappings
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    get:
-      tags:
-        - RoleMapping
-      summary: Find all instances of the model matched by filter from the data source.
-      operationId: RoleMapping.find
-      parameters:
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  /RoleMappings/replaceOrCreate:
-    post:
-      tags:
-        - RoleMapping
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
-      operationId: RoleMapping.replaceOrCreate
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  /RoleMappings/upsertWithWhere:
-    post:
-      tags:
-        - RoleMapping
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
-      operationId: RoleMapping.upsertWithWhere
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  '/RoleMappings/{id}/exists':
-    get:
-      tags:
-        - RoleMapping
-      summary: Check whether a model instance exists in the data source.
-      operationId: 'RoleMapping.exists__get_RoleMappings_{id}_exists'
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              exists:
-                type: boolean
-      deprecated: false
-  '/RoleMappings/{id}':
-    head:
-      tags:
-        - RoleMapping
-      summary: Check whether a model instance exists in the data source.
-      operationId: 'RoleMapping.exists__head_RoleMappings_{id}'
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              exists:
-                type: boolean
-      deprecated: false
-    get:
-      tags:
-        - RoleMapping
-      summary: 'Find a model instance by {{id}} from the data source.'
-      operationId: RoleMapping.findById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields and include - must be a JSON-encoded string
-            ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    delete:
-      tags:
-        - RoleMapping
-      summary: 'Delete a model instance by {{id}} from the data source.'
-      operationId: RoleMapping.deleteById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-      deprecated: false
-    put:
-      tags:
-        - RoleMapping
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
-      operationId: 'RoleMapping.prototype.updateAttributes__put_RoleMappings_{id}'
-      parameters:
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/RoleMapping'
-        - name: id
-          in: path
-          description: RoleMapping id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    patch:
-      tags:
-        - RoleMapping
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
-      operationId: 'RoleMapping.prototype.updateAttributes__patch_RoleMappings_{id}'
-      parameters:
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/RoleMapping'
-        - name: id
-          in: path
-          description: RoleMapping id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  '/RoleMappings/{id}/replace':
-    post:
-      tags:
-        - RoleMapping
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
-      operationId: RoleMapping.replaceById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  /RoleMappings/findOne:
-    get:
-      tags:
-        - RoleMapping
-      summary: Find first instance of the model matched by filter from the data source.
-      operationId: RoleMapping.findOne
-      parameters:
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  /RoleMappings/update:
-    post:
-      tags:
-        - RoleMapping
-      summary: 'Update instances of the model matched by {{where}} from the data source.'
-      operationId: RoleMapping.updateAll
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/RoleMapping'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            description: Information related to the outcome of the operation
-            type: object
-            properties:
-              count:
-                description: The number of instances updated
-                type: number
-                format: double
-      deprecated: false
-  /RoleMappings/count:
-    get:
-      tags:
-        - RoleMapping
-      summary: Count instances of the model matched by where from the data source.
-      operationId: RoleMapping.count
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              count:
-                type: number
-                format: double
-      deprecated: false
-  '/Roles/{id}/principals/{fk}':
-    get:
-      tags:
-        - Role
-      summary: Find a related item by id for principals.
-      operationId: Role.prototype.__findById__principals
-      parameters:
-        - name: fk
-          in: path
-          description: Foreign key for principals
-          required: true
-          type: string
-          format: JSON
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    delete:
-      tags:
-        - Role
-      summary: Delete a related item by id for principals.
-      operationId: Role.prototype.__destroyById__principals
-      parameters:
-        - name: fk
-          in: path
-          description: Foreign key for principals
-          required: true
-          type: string
-          format: JSON
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '204':
-          description: Request was successful
-      deprecated: false
-    put:
-      tags:
-        - Role
-      summary: Update a related item by id for principals.
-      operationId: Role.prototype.__updateById__principals
-      parameters:
-        - name: fk
-          in: path
-          description: Foreign key for principals
-          required: true
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RoleMapping'
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-  '/Roles/{id}/principals':
-    get:
-      tags:
-        - Role
-      summary: Queries principals of Role.
-      operationId: Role.prototype.__get__principals
-      parameters:
-        - name: filter
-          in: query
-          required: false
-          type: string
-          format: JSON
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    post:
-      tags:
-        - Role
-      summary: Creates a new instance in principals of this model.
-      operationId: Role.prototype.__create__principals
-      parameters:
-        - name: data
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RoleMapping'
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/RoleMapping'
-      deprecated: false
-    delete:
-      tags:
-        - Role
-      summary: Deletes all principals of this model.
-      operationId: Role.prototype.__delete__principals
-      parameters:
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '204':
-          description: Request was successful
-      deprecated: false
-  '/Roles/{id}/principals/count':
-    get:
-      tags:
-        - Role
-      summary: Counts principals of Role.
-      operationId: Role.prototype.__count__principals
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              count:
-                type: number
-                format: double
-      deprecated: false
-  /Roles:
-    post:
-      tags:
-        - Role
-      summary: Create a new instance of the model and persist it into the data source.
-      operationId: Role.create
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-    put:
-      tags:
-        - Role
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
-      operationId: Role.upsert__put_Roles
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-    patch:
-      tags:
-        - Role
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
-      operationId: Role.upsert__patch_Roles
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-    get:
-      tags:
-        - Role
-      summary: Find all instances of the model matched by filter from the data source.
-      operationId: Role.find
-      parameters:
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Role'
-      deprecated: false
-  /Roles/replaceOrCreate:
-    post:
-      tags:
-        - Role
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
-      operationId: Role.replaceOrCreate
-      parameters:
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  /Roles/upsertWithWhere:
-    post:
-      tags:
-        - Role
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
-      operationId: Role.upsertWithWhere
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  '/Roles/{id}/exists':
-    get:
-      tags:
-        - Role
-      summary: Check whether a model instance exists in the data source.
-      operationId: 'Role.exists__get_Roles_{id}_exists'
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              exists:
-                type: boolean
-      deprecated: false
-  '/Roles/{id}':
-    head:
-      tags:
-        - Role
-      summary: Check whether a model instance exists in the data source.
-      operationId: 'Role.exists__head_Roles_{id}'
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              exists:
-                type: boolean
-      deprecated: false
-    get:
-      tags:
-        - Role
-      summary: 'Find a model instance by {{id}} from the data source.'
-      operationId: Role.findById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields and include - must be a JSON-encoded string
-            ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-    delete:
-      tags:
-        - Role
-      summary: 'Delete a model instance by {{id}} from the data source.'
-      operationId: Role.deleteById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-      deprecated: false
-    put:
-      tags:
-        - Role
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
-      operationId: 'Role.prototype.updateAttributes__put_Roles_{id}'
-      parameters:
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/Role'
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-    patch:
-      tags:
-        - Role
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
-      operationId: 'Role.prototype.updateAttributes__patch_Roles_{id}'
-      parameters:
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/Role'
-        - name: id
-          in: path
-          description: Role id
-          required: true
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  '/Roles/{id}/replace':
-    post:
-      tags:
-        - Role
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
-      operationId: Role.replaceById
-      parameters:
-        - name: id
-          in: path
-          description: Model id
-          required: true
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: Model instance data
-          required: false
-          schema:
-            description: Model instance data
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  /Roles/findOne:
-    get:
-      tags:
-        - Role
-      summary: Find first instance of the model matched by filter from the data source.
-      operationId: Role.findOne
-      parameters:
-        - name: filter
-          in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            $ref: '#/definitions/Role'
-      deprecated: false
-  /Roles/update:
-    post:
-      tags:
-        - Role
-      summary: 'Update instances of the model matched by {{where}} from the data source.'
-      operationId: Role.updateAll
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-        - name: data
-          in: body
-          description: An object of model property name/value pairs
-          required: false
-          schema:
-            description: An object of model property name/value pairs
-            $ref: '#/definitions/Role'
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            description: Information related to the outcome of the operation
-            type: object
-            properties:
-              count:
-                description: The number of instances updated
-                type: number
-                format: double
-      deprecated: false
-  /Roles/count:
-    get:
-      tags:
-        - Role
-      summary: Count instances of the model matched by where from the data source.
-      operationId: Role.count
-      parameters:
-        - name: where
-          in: query
-          description: Criteria to match model instances
-          required: false
-          type: string
-          format: JSON
-      responses:
-        '200':
-          description: Request was successful
-          schema:
-            type: object
-            properties:
-              count:
-                type: number
-                format: double
-      deprecated: false
   '/Songs/{id}/clients/{fk}':
     get:
       tags:
@@ -1221,9 +268,7 @@ paths:
     put:
       tags:
         - Song
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Song.upsert__put_Songs
       parameters:
         - name: data
@@ -1242,9 +287,7 @@ paths:
     patch:
       tags:
         - Song
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Song.upsert__patch_Songs
       parameters:
         - name: data
@@ -1268,9 +311,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -1286,9 +327,7 @@ paths:
     post:
       tags:
         - Song
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
+      summary: Replace an existing model instance or insert a new one into the data source.
       operationId: Song.replaceOrCreate
       parameters:
         - name: data
@@ -1308,9 +347,7 @@ paths:
     post:
       tags:
         - Song
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
       operationId: Song.upsertWithWhere
       parameters:
         - name: where
@@ -1390,9 +427,7 @@ paths:
           format: JSON
         - name: filter
           in: query
-          description: >-
-            Filter defining fields and include - must be a JSON-encoded string
-            ({"something":"value"})
+          description: 'Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -1423,9 +458,7 @@ paths:
     put:
       tags:
         - Song
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Song.prototype.updateAttributes__put_Songs_{id}'
       parameters:
         - name: data
@@ -1450,9 +483,7 @@ paths:
     patch:
       tags:
         - Song
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Song.prototype.updateAttributes__patch_Songs_{id}'
       parameters:
         - name: data
@@ -1478,9 +509,7 @@ paths:
     post:
       tags:
         - Song
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
+      summary: Replace attributes for a model instance and persist it into the data source.
       operationId: Song.replaceById
       parameters:
         - name: id
@@ -1511,9 +540,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -1647,9 +674,7 @@ paths:
     put:
       tags:
         - Feed
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Feed.upsert__put_Feeds
       parameters:
         - name: data
@@ -1668,9 +693,7 @@ paths:
     patch:
       tags:
         - Feed
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Feed.upsert__patch_Feeds
       parameters:
         - name: data
@@ -1694,9 +717,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -1712,9 +733,7 @@ paths:
     post:
       tags:
         - Feed
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
+      summary: Replace an existing model instance or insert a new one into the data source.
       operationId: Feed.replaceOrCreate
       parameters:
         - name: data
@@ -1734,9 +753,7 @@ paths:
     post:
       tags:
         - Feed
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
       operationId: Feed.upsertWithWhere
       parameters:
         - name: where
@@ -1816,9 +833,7 @@ paths:
           format: JSON
         - name: filter
           in: query
-          description: >-
-            Filter defining fields and include - must be a JSON-encoded string
-            ({"something":"value"})
+          description: 'Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -1849,9 +864,7 @@ paths:
     put:
       tags:
         - Feed
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Feed.prototype.updateAttributes__put_Feeds_{id}'
       parameters:
         - name: data
@@ -1876,9 +889,7 @@ paths:
     patch:
       tags:
         - Feed
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Feed.prototype.updateAttributes__patch_Feeds_{id}'
       parameters:
         - name: data
@@ -1904,9 +915,7 @@ paths:
     post:
       tags:
         - Feed
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
+      summary: Replace attributes for a model instance and persist it into the data source.
       operationId: Feed.replaceById
       parameters:
         - name: id
@@ -1937,9 +946,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -2443,9 +1450,7 @@ paths:
     put:
       tags:
         - Client
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Client.upsert__put_Clients
       parameters:
         - name: data
@@ -2464,9 +1469,7 @@ paths:
     patch:
       tags:
         - Client
-      summary: >-
-        Patch an existing model instance or insert a new one into the data
-        source.
+      summary: Patch an existing model instance or insert a new one into the data source.
       operationId: Client.upsert__patch_Clients
       parameters:
         - name: data
@@ -2490,9 +1493,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -2508,9 +1509,7 @@ paths:
     post:
       tags:
         - Client
-      summary: >-
-        Replace an existing model instance or insert a new one into the data
-        source.
+      summary: Replace an existing model instance or insert a new one into the data source.
       operationId: Client.replaceOrCreate
       parameters:
         - name: data
@@ -2530,9 +1529,7 @@ paths:
     post:
       tags:
         - Client
-      summary: >-
-        Update an existing model instance or insert a new one into the data
-        source based on the where criteria.
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
       operationId: Client.upsertWithWhere
       parameters:
         - name: where
@@ -2612,9 +1609,7 @@ paths:
           format: JSON
         - name: filter
           in: query
-          description: >-
-            Filter defining fields and include - must be a JSON-encoded string
-            ({"something":"value"})
+          description: 'Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -2645,9 +1640,7 @@ paths:
     put:
       tags:
         - Client
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Client.prototype.updateAttributes__put_Clients_{id}'
       parameters:
         - name: data
@@ -2672,9 +1665,7 @@ paths:
     patch:
       tags:
         - Client
-      summary: >-
-        Patch attributes for a model instance and persist it into the data
-        source.
+      summary: Patch attributes for a model instance and persist it into the data source.
       operationId: 'Client.prototype.updateAttributes__patch_Clients_{id}'
       parameters:
         - name: data
@@ -2700,9 +1691,7 @@ paths:
     post:
       tags:
         - Client
-      summary: >-
-        Replace attributes for a model instance and persist it into the data
-        source.
+      summary: Replace attributes for a model instance and persist it into the data source.
       operationId: Client.replaceById
       parameters:
         - name: id
@@ -2733,9 +1722,7 @@ paths:
       parameters:
         - name: filter
           in: query
-          description: >-
-            Filter defining fields, where, include, order, offset, and limit -
-            must be a JSON-encoded string ({"something":"value"})
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
           required: false
           type: string
           format: JSON
@@ -2814,9 +1801,7 @@ paths:
             type: object
         - name: include
           in: query
-          description: >-
-            Related objects to include in the response. See the description of
-            return value for more details.
+          description: Related objects to include in the response. See the description of return value for more details.
           required: false
           type: string
           format: JSON
@@ -2825,11 +1810,11 @@ paths:
           description: Request was successful
           schema:
             description: >+
-              The response body contains properties of the AccessToken created
-              on login.
+              The response body contains properties of the AccessToken created on
+              login.
 
-              Depending on the value of `include` parameter, the body may
-              contain additional properties:
+              Depending on the value of `include` parameter, the body may contain
+              additional properties:
 
 
 
@@ -2898,10 +1883,12 @@ paths:
     post:
       tags:
         - Client
+      summary: Check if specified user has Admin role assigned
       operationId: Client.checkIfAdmin
       parameters:
         - name: userId
           in: formData
+          description: Id of User
           required: false
           type: string
       responses:
@@ -2916,36 +1903,6 @@ paths:
 definitions:
   x-any:
     properties: {}
-  Role:
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      description:
-        type: string
-      created:
-        type: string
-        format: date-time
-      modified:
-        type: string
-        format: date-time
-    required:
-      - name
-    additionalProperties: false
-  RoleMapping:
-    description: Map principals to roles
-    properties:
-      id:
-        type: string
-      principalType:
-        description: 'The principal type, such as user, application, or role'
-        type: string
-      principalId:
-        type: string
-      roleId:
-        type: string
-    additionalProperties: false
   Client:
     properties:
       realm:
@@ -2989,26 +1946,31 @@ definitions:
         type: string
     required:
       - clientId
+      - date
       - songId
     additionalProperties: false
   Song:
     properties:
-      title:
-        description: Title of song
-        type: string
       artist:
         description: Artist that is the author of the song
         type: string
       personalities:
-        description: >-
-          Object representing personalities retrieved from Watson Personality
-          Insight
+        description: Object representing personalities retrieved from Watson Personality Insight
         type: object
+      title:
+        description: Title of song
+        type: string
       tones:
         description: Object representing tones retrieved from Watson Tone Analyser
         type: object
+      cover:
+        description: URL of covert art
+        type: string
       id:
         type: string
+    required:
+      - artist
+      - title
     additionalProperties: false
   AccessToken:
     properties:
@@ -3063,8 +2025,7 @@ x-ibm-configuration:
         runtime-url: $(TARGET_URL)
     sb:
       properties:
-        runtime-url: >-
-          https://apiconnect-f388fb2d-432d-429d-9b93-4947010bc7c0.tltranstudentvunl-dev.apic.mybluemix.net
+        runtime-url: 'https://apiconnect-f388fb2d-432d-429d-9b93-4947010bc7c0.tltranstudentvunl-dev.apic.mybluemix.net'
         invoke-tls-profile: 'client:Loopback-client'
   assembly:
     execute:

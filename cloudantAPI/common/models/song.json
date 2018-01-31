@@ -7,14 +7,9 @@
     "validateUpsert": true
   },
   "properties": {
-    "title": {
-      "type": "string",
-      "required": false,
-      "description": "Title of song"
-    },
     "artist": {
       "type": "string",
-      "required": false,
+      "required": true,
       "description": "Artist that is the author of the song"
     },
     "personalities": {
@@ -22,10 +17,20 @@
       "required": false,
       "description": "Object representing personalities retrieved from Watson Personality Insight"
     },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Title of song"
+    },
     "tones": {
       "type": "object",
       "required": false,
       "description": "Object representing tones retrieved from Watson Tone Analyser"
+    },
+    "cover": {
+      "type": "string",
+      "required": false,
+      "description": "URL of covert art"
     }
   },
   "validations": [],
