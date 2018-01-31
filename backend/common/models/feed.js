@@ -18,7 +18,7 @@ module.exports = function (Feed) {
   Feed.remoteMethod('getFeeds', {
     returns: {type: 'array', root: true},
     http: {path: '/getFeeds', verb: 'get'},
-    description: 'Remote method to retrieve all Feed records from database'
+    description: 'Retrieve all Feed records from database'
   });
 
   // delete feed
@@ -35,12 +35,12 @@ module.exports = function (Feed) {
 
   Feed.remoteMethod('deleteFeed', {
     accepts: [
-      { arg: 'feedId', type: 'string', http: { source: 'path' } }, 
+      { arg: 'feedId', type: 'string', http: { source: 'path' }, required: true }, 
       { arg: 'req', type: 'object', required: true, description: '', http: { source: 'req'} }
     ],
     http: {path: '/deleteFeed/:feedId', verb: 'del'},
     returns: {arg: 'response', type: 'object'},
-    description: 'Remote method to delete Feed record from database'
+    description: 'Delete Feed record from database'
   });
 
 };

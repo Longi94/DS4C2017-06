@@ -70,7 +70,7 @@ module.exports = function(Chatbot) {
           arg: 'userInput',
           type: 'string',
           required: true,
-          description: ''
+          description: 'Text provided by user'
         }
       ],
       returns: [
@@ -78,9 +78,10 @@ module.exports = function(Chatbot) {
           arg: 'response',
           type: 'string',
           root: false,
-          description: ''
+          description: 'Response provided by Cleverbot'
         }
-      ]
+      ],
+      description: "Pass user input to Cleverbot service to provide conversation"
 	});
 
 };
