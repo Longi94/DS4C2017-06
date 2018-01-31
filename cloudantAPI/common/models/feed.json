@@ -54,13 +54,6 @@
       "principalId": "admin",
       "permission": "ALLOW",
       "property": "deleteById"
-    },
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "create"
     }
   ],
   "methods": {}

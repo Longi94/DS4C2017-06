@@ -34,9 +34,401 @@ paths:
         '200':
           description: Request was successful
           schema:
+            type: object
+            properties:
+              songs:
+                type: array
+                items:
+                  type: object
+              tone:
+                type: object
+              personality:
+                type: object
+              feedBody:
+                type: object
+      deprecated: false
+  '/Feeds/{id}/song':
+    get:
+      tags:
+        - Feed
+      summary: Fetches belongsTo relation song.
+      operationId: Feed.prototype.__get__song
+      parameters:
+        - name: refresh
+          in: query
+          required: false
+          type: boolean
+        - name: id
+          in: path
+          description: Feed id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Song'
+      deprecated: false
+  /Feeds:
+    post:
+      tags:
+        - Feed
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Feed.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+    put:
+      tags:
+        - Feed
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Feed.upsert__put_Feeds
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+    patch:
+      tags:
+        - Feed
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: Feed.upsert__patch_Feeds
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+    get:
+      tags:
+        - Feed
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: Feed.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: '#/definitions/Feed'
+      deprecated: false
+  /Feeds/replaceOrCreate:
+    post:
+      tags:
+        - Feed
+      summary: Replace an existing model instance or insert a new one into the data source.
+      operationId: Feed.replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+  /Feeds/upsertWithWhere:
+    post:
+      tags:
+        - Feed
+      summary: Update an existing model instance or insert a new one into the data source based on the where criteria.
+      operationId: Feed.upsertWithWhere
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+  '/Feeds/{id}/exists':
+    get:
+      tags:
+        - Feed
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Feed.exists__get_Feeds_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/Feeds/{id}':
+    head:
+      tags:
+        - Feed
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Feed.exists__head_Feeds_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - Feed
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: Feed.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: 'Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+    delete:
+      tags:
+        - Feed
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: Feed.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - Feed
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Feed.prototype.updateAttributes__put_Feeds_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Feed'
+        - name: id
+          in: path
+          description: Feed id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+    patch:
+      tags:
+        - Feed
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'Feed.prototype.updateAttributes__patch_Feeds_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Feed'
+        - name: id
+          in: path
+          description: Feed id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+  '/Feeds/{id}/replace':
+    post:
+      tags:
+        - Feed
+      summary: Replace attributes for a model instance and persist it into the data source.
+      operationId: Feed.replaceById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+  /Feeds/findOne:
+    get:
+      tags:
+        - Feed
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: Feed.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Feed'
+      deprecated: false
+  /Feeds/update:
+    post:
+      tags:
+        - Feed
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: Feed.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Feed'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Information related to the outcome of the operation
+            type: object
+            properties:
+              count:
+                description: The number of instances updated
+                type: number
+                format: double
+      deprecated: false
+  /Feeds/count:
+    get:
+      tags:
+        - Feed
+      summary: Count instances of the model matched by where from the data source.
+      operationId: Feed.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
       deprecated: false
   /Feeds/getFeeds:
     get:
@@ -53,7 +445,7 @@ paths:
             items:
               $ref: '#/definitions/x-any'
       deprecated: false
-  /Feeds/deleteFeed:
+  '/Feeds/deleteFeed/{feedId}':
     delete:
       tags:
         - Feed
@@ -144,6 +536,39 @@ paths:
 definitions:
   x-any:
     properties: {}
+  Song:
+    properties:
+      artist:
+        type: string
+      title:
+        type: string
+      id:
+        type: number
+        format: double
+    required:
+      - artist
+      - title
+    additionalProperties: false
+  Feed:
+    properties:
+      clientId:
+        description: Represents foreign key for Client relation
+        type: string
+      date:
+        description: Timestamp of feed creation
+        type: string
+        format: date-time
+      songId:
+        description: Represents foreign key for Song relation
+        type: number
+        format: double
+      id:
+        type: number
+        format: double
+    required:
+      - clientId
+      - songId
+    additionalProperties: false
 basePath: /api
 swagger: '2.0'
 info:
