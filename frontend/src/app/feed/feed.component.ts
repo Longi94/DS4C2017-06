@@ -35,7 +35,7 @@ export class FeedComponent implements OnInit {
   deleteFeed(feedId) {
     this.feedService.deleteFeed(feedId).subscribe(res => {
       if (res.response.error != null) {
-        alert(res.response.error.message);
+        alert("Only Admin user can delete feed records");
       }
 
       setTimeout(() => this.getFeed(), 1000);
