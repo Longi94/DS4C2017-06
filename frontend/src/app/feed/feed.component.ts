@@ -38,7 +38,7 @@ export class FeedComponent implements OnInit {
         alert(res.response.error.message);
       }
 
-      this.getFeed();
+      setTimeout(() => this.getFeed(), 1000);
     });
   }
 
