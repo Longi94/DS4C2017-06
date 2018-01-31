@@ -42,18 +42,25 @@
   },
   "acls": [
     {
-      "accessType": "EXECUTE",
+      "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY",
       "property": "deleteById"
     },
     {
-      "accessType": "EXECUTE",
-      "principalType": "USER",
-      "principalId": "159882e4a5bdde9cc725eee8c13a0d8a",
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "admin",
       "permission": "ALLOW",
       "property": "deleteById"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
     }
   ],
   "methods": {}
