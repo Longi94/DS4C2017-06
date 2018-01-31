@@ -5,8 +5,7 @@ const request = require('request');
 const loopback = require('loopback');
 const querystring = require('querystring');
 const fs = require('fs');
-var app = module.exports = loopback();
-var RoleMapping = app.models.RoleMapping;
+
 
 class CloudantAPIError extends Error {
     constructor(message) {
