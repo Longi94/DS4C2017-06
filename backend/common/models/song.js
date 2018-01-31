@@ -121,15 +121,9 @@ const analyzeText = function (text, callback) {
   });
 
   Promise.all([tonePromise, personalityPromise, songsPromise]).then(values => {
-    console.log("PROMISE RESULTS");
-    console.log(JSON.stringify(values));
 
     const tones = getTones(values[0]);
-    console.log("TONES");
-    console.log(JSON.stringify(tones));
     const personalities = getPersonalities(values[1]);
-    console.log("PERSONALITIES");
-    console.log(JSON.stringify(personalities));
 
     const songs = getTop10Songs(tones, personalities, JSON.parse(values[2]));
 
@@ -179,7 +173,7 @@ const getTop10Songs = function (tones, personalities, songs) {
     // Personality Distance
     let sum = 0;
     Object.keys(songs[i].personalities).forEach((key) => {
-      sum += Math.pow(2, personalities[key] - songs[i].personalities[key]);
+      sum += Math.pow(personalities[key] - songs[i].personalities[key], 2);
     });
 
     let personalityDistance = Math.sqrt(sum);
@@ -198,7 +192,7 @@ const getTop10Songs = function (tones, personalities, songs) {
       if (!songs[i].tones[key]) {
         songs[i].tones[key] = 0;
       }
-      sum += Math.pow(2, tones[key] - songs[i].tones[key]);
+      sum += Math.pow(tones[key] - songs[i].tones[key], 2);
     });
 
     let toneDistance = Math.sqrt(sum);
