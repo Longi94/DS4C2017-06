@@ -2792,6 +2792,25 @@ paths:
         '204':
           description: Request was successful
       deprecated: false
+  /Clients/checkIfAdmin:
+    post:
+      tags:
+        - Client
+      operationId: Client.checkIfAdmin
+      parameters:
+        - name: userId
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              isAdmin:
+                type: boolean
+      deprecated: false
 definitions:
   x-any:
     properties: {}

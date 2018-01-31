@@ -6,6 +6,7 @@ const loopback = require('loopback');
 const querystring = require('querystring');
 const fs = require('fs');
 
+
 class CloudantAPIError extends Error {
     constructor(message) {
         super(message);
@@ -57,9 +58,8 @@ class CloudantAPI_Users {
 
         request(options, function (error, response, body) {
           if (error) return callback(error);
-            //var testUrl = conf.endpoint + 'api/RoleMappings/filter?where=' + querystring.stringify({principalId:'159882e4a5bdde9cc725eee8c13a0d8a',roleId:'159882e4a5bdde9cc725eee8c13a1030'});
-            //console.log("TEST URL: ", testUrl);
-
+            
+            /*
             var adminOptions = {
             method: 'GET',
             url: conf.endpoint + 'api/RoleMappings?filter={"where":{"principalId":{"like":"'+body.userId+'"},"roleId:{"like":"159882e4a5bdde9cc725eee8c13a1030"}"}}',
@@ -74,7 +74,7 @@ class CloudantAPI_Users {
                     console.log("WRITE FILE ERR: ", err);
                 }
             });
-            */
+            
             //console.log("Admin check success: ", aRes);
         if(aBody){
             var pId = aBody[0].principalId;
@@ -92,7 +92,7 @@ class CloudantAPI_Users {
         }
 
           });
-
+        */
 
           callback(null, body);
 
