@@ -24,7 +24,7 @@ export class FeedComponent implements OnInit {
   getFeed(): void {
     this.feedService.getFeed().subscribe(items => {
       this.feedItems = items;
-      this.feedItems.sort((a, b) => b.date - a.date);
+      this.feedItems.sort((a, b) => moment(b.date).isAfter(a.date) ? 1 : -1);
     });
   }
 
@@ -34,7 +34,7 @@ export class FeedComponent implements OnInit {
 
   deleteFeed(feedId) {
     this.feedService.deleteFeed(feedId).subscribe(res => {
-      if(res.response.error != null) {
+      if (res.response.error != null) {
         alert(res.response.error.message);
       }
 
