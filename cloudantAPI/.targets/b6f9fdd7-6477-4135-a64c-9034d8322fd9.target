@@ -117,11 +117,11 @@ app:
     instances: 1
     disk_quota: 1024
     state: STOPPED
-    version: 10704b2b-f53a-4d0d-b6ff-31de0254e8bb
+    version: 4805cbe3-3ae2-486a-94e7-8f05ce224420
     command: null
     console: true
     debug: null
-    staging_task_id: b36cfa95-4022-4db4-806e-126fe3bbb007
+    staging_task_id: 3efaabd1-ffc1-4c71-b827-9ddd60b68919
     package_state: PENDING
     health_check_type: port
     health_check_timeout: null
@@ -130,7 +130,7 @@ app:
     staging_failed_description: null
     diego: true
     docker_image: null
-    package_updated_at: '2018-01-31T16:31:22Z'
+    package_updated_at: '2018-01-31T16:38:35Z'
     detected_start_command: ./vendor/initial_startup.rb
     enable_ssh: true
     ports: null
