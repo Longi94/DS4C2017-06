@@ -12,12 +12,19 @@ export class FeedService {
   constructor(private httpClient: HttpClient) {
   }
 
-  private feedUrl = environment.apiBaseUrl + '/Feeds/getFeeds';
+  private feedsUrl = environment.apiBaseUrl + '/Feeds';
 
   getFeed(): Observable<FeedItem[]> {
-    return this.httpClient.get<FeedItem[]>(this.feedUrl)
+    return this.httpClient.get<FeedItem[]>(this.feedsUrl + '/getFeeds')
       .pipe(
         catchError(HttpUtils.handleError('getFeed', []))
+      );
+  }
+
+  deleteFeed(feedId): Observable<any> {
+    return this.httpClient.delete(this.feedsUrl + '/deleteFeed/' + feedId)
+      .pipe(
+        catchError(HttpUtils.handleError('deleteFeed', []))
       );
   }
 }

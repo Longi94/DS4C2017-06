@@ -23,19 +23,22 @@ module.exports = function (Feed) {
 
   // delete feed
 
-  Feed.deleteFeed = function (feedId, callback) {
-
-    feedsAPI.deleteFeed(feedId, (error, response) => {
+  Feed.deleteFeed = function (feedId, req, callback) {
+    const accessToken = req.headers.authorization;
+    feedsAPI.deleteFeed(feedId, accessToken, (error, response) => {
       if (error) return callback(error);
       console.log(response);
 
-      callback(null, response);
+      callback(null, JSON.parse(response));
     });
   };
 
   Feed.remoteMethod('deleteFeed', {
-    accepts: { arg: 'feedId', type: 'string', http: { source: 'path' } },
-    http: {path: '/deleteFeed', verb: 'del'},
+    accepts: [
+      { arg: 'feedId', type: 'string', http: { source: 'path' } }, 
+      { arg: 'req', type: 'object', required: true, description: '', http: { source: 'req'} }
+    ],
+    http: {path: '/deleteFeed/:feedId', verb: 'del'},
     returns: {arg: 'response', type: 'object'},
     description: 'Remote method to delete Feed record from database'
   });

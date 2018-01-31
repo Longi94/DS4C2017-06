@@ -32,6 +32,16 @@ export class FeedComponent implements OnInit {
     return moment(date).format('MMMM Do YYYY, h:mm:ss a');
   };
 
+  deleteFeed(feedId) {
+    this.feedService.deleteFeed(feedId).subscribe(res => {
+      if(res.response.error != null) {
+        alert(res.response.error.message);
+      }
+
+      this.getFeed();
+    });
+  }
+
   feedItems: FeedItem[];
 
 }
