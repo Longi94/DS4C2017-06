@@ -102,6 +102,12 @@ export class ChatComponent implements OnInit {
     this.musicService.getRecommendedSong(fullText).subscribe(result => {
       this.resultSongs = result.songs;
 
+      for (let i = 0; i < this.resultSongs.length; i++) {
+        if (!this.resultSongs[i].cover) {
+          this.resultSongs[i].cover = "/assets/placeholder.jpg"
+        }
+      }
+
       this.showResult = true;
 
       let persAxes = [];

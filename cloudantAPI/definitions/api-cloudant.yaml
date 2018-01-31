@@ -2990,6 +2990,10 @@ definitions:
         type: object
       id:
         type: string
+      cover:
+        properties: {}
+        type: string
+        description: Cover art
     additionalProperties: false
   AccessToken:
     properties:
