@@ -121,10 +121,15 @@ const analyzeText = function (text, callback) {
   });
 
   Promise.all([tonePromise, personalityPromise, songsPromise]).then(values => {
-    console.log(values);
+    console.log("PROMISE RESULTS");
+    console.log(JSON.stringify(values));
 
     const tones = getTones(values[0]);
+    console.log("TONES");
+    console.log(JSON.stringify(tones));
     const personalities = getPersonalities(values[1]);
+    console.log("PERSONALITIES");
+    console.log(JSON.stringify(personalities));
 
     const songs = getTop10Songs(tones, personalities, JSON.parse(values[2]));
 
@@ -136,7 +141,7 @@ const getTones = function (response) {
   let tones = {};
 
   if (!('sentences_tone' in response)) {
-    response.document_tone.forEach(tone => tones[tone.tone_id] = tone.score);
+    response.document_tone.tones.forEach(tone => tones[tone.tone_id] = tone.score);
     return tones;
   }
 
@@ -147,14 +152,14 @@ const getTones = function (response) {
       if (!(tone.tone_id in tones)) {
         tones[tone.tone_id] = {avg: tone.score, count: 1}
       } else {
-        tones[tone.tone_id].avg = (tones[tone.tone_id].avg * tones[tone.tone_id].score + tone.score) / (tones[tone.tone_id].score + 1);
-        tones[tone.tone_id].score += 1;
+        tones[tone.tone_id].avg = (tones[tone.tone_id].avg * tones[tone.tone_id].count + tone.score) / (tones[tone.tone_id].count + 1);
+        tones[tone.tone_id].count += 1;
       }
     });
   });
 
   Object.keys(tones).forEach(key => {
-    tones[key] = tones[key].avg;
+      tones[key] = tones[key].avg;
   });
 
   return tones;
